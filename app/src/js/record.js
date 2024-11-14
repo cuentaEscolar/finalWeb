@@ -1,16 +1,8 @@
 "use strict";
 
 const { Game } = require("./game.js");
+const {Turn} = require("./turn.js");
 
-class Turn {
-  constructor(turnNumber, team, question, rightWrong) {
-    this.turnNumber = turnNumber;
-    this.team = team;
-    this.question = question;
-    this.rightWrong = rightWrong;
-  }
-
-}
 class Record {
 
   constructor() {
@@ -18,7 +10,7 @@ class Record {
     this.teamNames = [];
     this.scores = [];
     this.history = []; //array of Turns
-    this.currentTurn = 0;
+    this.currentTurnNumber = 0;
     this.currentTeam = 0;
     this.teamCount = 0;
   }
