@@ -1,11 +1,11 @@
 "use strict";
 const express = require('express');
 const path = require("path");
-const data_handler = require("./data_handler")
+//const data_handler = require("./data_handler")
 const router = express.Router();
 //const homeRouter = require("./../routes/home");
-const productRouter = require("../routes/products")
-const adminProductRouter = require("../routes/admin_products")
+//const productRouter = require("../routes/products")
+//const adminProductRouter = require("../routes/admin_products")
 
 function validateAdmin(req, res, next) {
   //console.log(req.headers['x-auth']);
@@ -22,8 +22,8 @@ function validateAdmin(req, res, next) {
   next();
 }
 
-router.use('/products', productRouter);
-router.use('/admin/products', validateAdmin, adminProductRouter);
+//router.use('/products', productRouter);
+//router.use('/admin/products', validateAdmin, adminProductRouter);
 //router.use('/admin/products', adminProductRouter);
 
 router.route("/").get((req, res) =>
@@ -36,8 +36,5 @@ router.route("/home").get((req, res) =>
   res.sendFile(path.join(__dirname, "../", "views", "leaderboard.html"))
 );
 
-router.route("/shopping_cart").get((req, res) =>
-  res.sendFile(path.join(__dirname, "../", "views", "shopping_cart.html"))
-);
 
 module.exports = router;
