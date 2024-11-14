@@ -2,9 +2,9 @@
 const cors = require('cors');
 const express = require("express");
 const path = require("path");
-const { Game } = require("./src/js/game.js");
-const Record = require("./src/js/record.js");
-const router = require('./controllers/router');
+const { Game } = require("./app/src/js/game.js");
+const Record = require("./app/src/js/record.js");
+const router = require('./app/controllers/router');
 //const { warn } = require("console");
 
 const app = express();
