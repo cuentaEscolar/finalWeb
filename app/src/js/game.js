@@ -1,4 +1,6 @@
 "use strict";
+const utils = require("./utils.js");
+const generateUUID = utils.generateUUID;
 class Game {
   constructor() {
     this.rows = 0;
@@ -6,6 +8,7 @@ class Game {
     this.title = "";
     this.topics = [];
     this.questions = [];
+    this.uuid = generateUUID();
   }
 }
 module.exports = { Game };
