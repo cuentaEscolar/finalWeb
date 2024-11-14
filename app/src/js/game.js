@@ -8,6 +8,7 @@ class Game {
     this.title = "";
     this.topics = [];
     this.questions = [];
+    this.answers = [];
     this.uuid = generateUUID();
   }
 }
