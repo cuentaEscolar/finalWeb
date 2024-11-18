@@ -5,4 +5,19 @@ function generateUUID() {
     return v.toString(16);
   });
 };
-module.exports = { generateUUID };
+function fieldCleanUp(fields, obj) {
+
+  if (obj == null) throw new Error("null");
+  if (Array.isArray(obj)) { obj = obj[0]; }
+  if (obj == null) throw new Error("null");
+
+  for (var key in obj) {
+    let plzBeTrue = false;
+    fields.forEach((field) => { if (field === key) plzBeTrue = true; });
+    if (!plzBeTrue) {
+      delete obj[key];
+    }
+  }
+  return obj;
+}
+module.exports = { generateUUID, fieldCleanUp };

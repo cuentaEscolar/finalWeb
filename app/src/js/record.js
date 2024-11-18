@@ -1,22 +1,26 @@
 "use strict";
 
 const { Game } = require("./game.js");
-const {Turn} = require("./turn.js");
+const { Turn } = require("./turn.js");
+const { Team } = require("./team.js");
 
 class Record {
 
   constructor() {
     this.game = new Game();
-    this.teamNames = [];
+    this.teams = [];
+    this.finalScores = [];
     this.scores = [];
+    this.teamNames = [];
     this.history = []; //array of Turns
     this.currentTurnNumber = 0;
     this.currentTeam = 0;
     this.teamCount = 0;
   }
-  addTeam(teamName) {
-    this.teamNames.push(teamName);
+  addTeam(team) {
+    this.teams.push(team);
     this.teamCount += 1;
+    this.finalScores.push(0);
   }
   addTurn(turn) {
     this.history.push(turn);
