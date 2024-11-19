@@ -32,8 +32,13 @@ router.route("/").get((req, res) =>
 router.route("/home").get((req, res) =>
   res.sendFile(path.join(__dirname, "../", "views", "home.html"))
 );
-router.route("/home").get((req, res) =>
-  res.sendFile(path.join(__dirname, "../", "views", "leaderboard.html"))
+
+router.route("/create").get((req, res) =>
+  res.sendFile(path.join(__dirname, "../", "views", "create.html"))
+);
+
+router.route("/leaderboard").get((req, res) =>
+  res.sendFile(path.join(__dirname, "../", "views", "create.html"))
 );
 
 

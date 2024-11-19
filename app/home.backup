@@ -5,17 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title></title>
-  <link href="./src/styles/homeStyle.css" rel="stylesheet">
+  <link href="./../src/styles/homeStyle.css" rel="stylesheet">
 </head>
 
 <body>
   <div id="container">
     <div id="headerArea">
-      <div id="header"></div>
+      <div id="header">
+        <img src="./../wordart.png" alt="">
+      </div>
       <nav id="navbar">
         <ul>
           <li><a href="#">Home</a></li>
-          <li><a href="#">Create</a></li>
+          <li><a href="./create.html#">Create</a></li>
           <li><a href="#">View</a></li>
           <li><a href="#">Play</a></li>
           <li><a href="#">Leaderboard</a></li>
@@ -25,7 +27,7 @@
 
     <div id="flex">
       <aside id="leftSidebar">
-        <h2>Titulo</h2>
+        <h2>Todo</h2>
         <div class="box">
 
           <p> Cosas que tenemos que hacer </p>
@@ -33,7 +35,7 @@
             <li>Falta Hacer el FrontEnd para la Creacion</li>
             <li>Para el Leaderboard</li>
             <li>y para jugar </li>
-            <li>Backend para </li>
+            <li>Backend para todo</li>
             <li>falta decidir cual de las dos tareas fue mejor, y usar esa.</li>
             <li>y para jugar </li>
 
@@ -87,7 +89,7 @@
     </div>
     <footer id="footer">CC0 Public Domain, 2022</footer>
   </div>
-  <!-- Modal and stoff : c -->
+  <!-- THIS IS THE CSS !-->
 </body>
 
 </html>
