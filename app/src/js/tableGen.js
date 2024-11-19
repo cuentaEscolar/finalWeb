@@ -189,6 +189,7 @@ let container = modalBody.childNodes[1];
 let question = container.getElementsByClassName("question")[0];
 let theme = container.getElementsByClassName("theme")[0];
 let json = container.getElementsByClassName("json")[0];
+
 function requestData(event) {
   // filtrar, si no son tipo anchor Tag salirse de la función
 
@@ -228,6 +229,8 @@ btnJsonStr.onclick = generateJson;
 
 // completa la función
 function generateJson(event) {
+  console.log("i");
+
   theme.setAttribute("hidden", "");
   question.setAttribute("hidden", "");
   json.removeAttribute("hidden");
