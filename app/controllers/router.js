@@ -1,9 +1,15 @@
 "use strict";
+
 const express = require('express');
 const path = require("path");
 //const data_handler = require("./data_handler")
 const router = express.Router();
-//const homeRouter = require("./../routes/home");
+const loginRouter = require("../routes/login")
+const homeRouter = require("./../routes/home");
+const createRouter = require("./../routes/home");
+const leaderboardRouter = require("./../routes/leaderboard");
+const stubRouter = require("./../routes/stubRouter");
+
 //const productRouter = require("../routes/products")
 //const adminProductRouter = require("../routes/admin_products")
 
@@ -30,20 +36,9 @@ router.route("/").get((req, res) =>
   res.sendFile(path.join(__dirname, "../", "views", "home.html"))
 );
 
-router.route("/home").get((req, res) =>
-  res.sendFile(path.join(__dirname, "../", "views", "home.html"))
-);
-
-router.route("/create").get((req, res) =>
-  res.sendFile(path.join(__dirname, "../", "views", "create.html"))
-);
-
-router.route("/leaderboard").get((req, res) =>
-  res.sendFile(path.join(__dirname, "../", "views", "create.html"))
-);
-
-router.route("/stub").get((req, res) =>
-  res.sendFile(path.join(__dirname, "../", "views", "stub.html"))
-);
+router.use('/home', homeRouter);
+router.use('/create', createRouter);
+router.use('/leaderboard', leaderboardRouter);
+router.use('/stub', stubRouter);
 
 module.exports = router;
