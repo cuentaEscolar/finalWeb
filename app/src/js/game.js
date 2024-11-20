@@ -11,6 +11,7 @@ class Game {
     this.answers = [];
     this.scores = [];
     this.uuid = generateUUID();
+    this.creator = ;
   }
 }
 module.exports = { Game };
