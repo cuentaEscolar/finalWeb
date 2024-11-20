@@ -29,5 +29,4 @@ class Record {
   }
 
 }
-let newRecord = new Record();
-console.log(newRecord);
+module.exports = { Record }
