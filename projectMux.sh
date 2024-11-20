@@ -9,8 +9,11 @@ else
     # Create a new session and name it
     tmux new-session -d -s $SESSION_NAME
     tmux new-window
-    tmux send-keys -t 1 'echo "Hello from pane 1"' C-m
+    tmux new-window
+
     tmux send-keys -t 0 'node server.js' C-m
+    tmux send-keys -t 1 'nvim server.js' C-m
+    tmux send-keys -t 2 'cd app' C-m
 
 
     # Split the window horizontally
