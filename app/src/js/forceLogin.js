@@ -1,15 +1,21 @@
 "use strict";
 console.log("hi");
 //let leaderboardA = document.getElementById("leaderboard");
-if (sessionStorage.getItem("loggedIn") != null) sessionStorage.setItem("loggedIn", false);
-
 let home = document.getElementById("home");
 let login = document.getElementById("login");
 let create = document.getElementById("create");
 let view = document.getElementById("view");
+let play = document.getElementById("play");
 let leaderboard = document.getElementById("leaderboard");
+let stubber = (() => { window.location.href = "stub"; });
 
-leaderboard.onclick = (
-  () => { window.location.href = "stub";}  
-  );
+if (sessionStorage.getItem("loggedIn") != null) {
+
+  sessionStorage.setItem("loggedIn", false);
+  create.onclick = stubber;
+  view.onclick = stubber;
+  play.onclick = stubber;
+  leaderboard.onclick = stubber;
+
+}
 
