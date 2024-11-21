@@ -38,6 +38,7 @@ router.route("/").get((req, res) =>
 );
 
 router.use('/home', homeRouter);
+router.use('/login', loginRouter);
 router.use('/create', createRouter);
 router.use('/games', gamesRouter);
 router.use('/leaderboard', leaderboardRouter);
