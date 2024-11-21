@@ -1,18 +1,9 @@
 "use strict"
-const fs = require("fs");
+const User = require('../models/users')
 const userClass = require("./../src/js/user.js");
-const path = require("path");
-const userFile = path.join(__dirname, "./../data/users.json");
-const userJsonStr = fs.readFileSync(userFile);
-const rawUsers = JSON.parse(userJsonStr);
-let userArr = [];
-rawUsers.forEach(element => {
-  userArr.push(userClass.generateFromObject(element));
-});
-function getUsers() {
-  return userArr;
-}
-module.exports = { getUsers };
+const user_utils = require("./user_utils.js")
+const getUsers = user_utils.getUsers; 
+module.exports = { getUsers};
 /*
 
 const path = require("path")
