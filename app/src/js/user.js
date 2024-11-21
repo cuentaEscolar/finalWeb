@@ -1,5 +1,5 @@
 "use strict";
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const utils = require("./utils.js");
 const generateUUID = utils.generateUUID;
 
@@ -7,7 +7,7 @@ class User {
   constructor(username, email, password, role) {
     this.salt = bcrypt.genSaltSync(10);
     this.username = username;
-    this.email = bcrypt.hashSync(email, this.salt);
+    this.email_ = bcrypt.hashSync(email, this.salt);
     this.password = bcrypt.hashSync(password, this.salt);
     this.role = role;
     this.uuid = generateUUID();
@@ -22,12 +22,16 @@ class User {
   }
   static generateFromObject(obj) {
     let fields = ["username", "email", "password", "role", "img"];
-    obj = utils.fieldCleanUp(obj);
-    let funkyUser = new User(obj["username"], obj["email"])
-    if (obj["img"]) funkyUser.img = obj["img"];
+    obj = utils.fieldCleanUp(fields, obj);
+    let funkyUser = new User(obj["username"], obj["email"], obj["password"], obj["role"])
+    if (obj["img"]) funkyUser.img_ = obj["img"];
     return funkyUser;
   }
-  set img(href) {
+  set img_(href) {
     this.img = href;
   }
+  set email_(mail) {
+    this.email = mail;
+  }
 }
+module.exports = User;

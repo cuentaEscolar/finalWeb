@@ -25,7 +25,11 @@ let userSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  image: String,
+  img: String,
+  uuid: {
+    type: String,
+    required: true
+  },
   role: {
     type: String,
     enum: ['ADMIN', 'USER', 'GUEST'],
@@ -43,7 +47,7 @@ userSchema.methods.generateToken = function(password, salt) {
   let user = this;
   let payload = { _id: user._id, role: user.role };
   let options = { expiresIn: 60 * 60 }
-let salted = bcrypt.hashSync(password, salt);
+  let salted = bcrypt.hashSync(password, salt);
   if (bcrypt.compareSync(salted, user.password)) {
     try {
       user.token = jwt.sign(payload, privateKey, options);

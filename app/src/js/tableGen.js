@@ -2,13 +2,13 @@
 
 let game = {
 
-    rows : 0,
-    cols : 0,
-    title : "",
-    topics : [],
-    questions : [],
-    answers : [],
-    scores : [],
+  rows: 0,
+  cols: 0,
+  title: "",
+  topics: [],
+  questions: [],
+  answers: [],
+  scores: [],
 }
 
 // Aquí obten el input de titulo

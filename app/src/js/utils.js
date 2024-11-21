@@ -6,7 +6,6 @@ function generateUUID() {
   });
 };
 function fieldCleanUp(fields, obj) {
-
   if (obj == null) throw new Error("null");
   if (Array.isArray(obj)) { obj = obj[0]; }
   if (obj == null) throw new Error("null");
