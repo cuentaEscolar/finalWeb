@@ -25,7 +25,6 @@ let userSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  date: Date,
   image: String,
   role: {
     type: String,
@@ -40,11 +39,12 @@ userSchema.pre('save', function(next) {
   next();
 })
 
-userSchema.methods.generateToken = function(password) {
+userSchema.methods.generateToken = function(password, salt) {
   let user = this;
   let payload = { _id: user._id, role: user.role };
   let options = { expiresIn: 60 * 60 }
-  if (bcrypt.compareSync(password, user.password)) {
+let salted = bcrypt.hashSync(password, salt);
+  if (bcrypt.compareSync(salted, user.password)) {
     try {
       user.token = jwt.sign(payload, privateKey, options);
       return user.token;

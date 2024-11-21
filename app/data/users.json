@@ -1,0 +1,15 @@
+[
+  {
+    "username" : "admin",
+    "email" : "admin",
+    "password": "root",
+    "role": "ADMIN"
+  },
+  {
+    "username" : "silly Guz",
+    "email" : "silly@guz.com",
+    "password": "root",
+    "img": "https://static.wikia.nocookie.net/silly-cat/images/a/a0/Gusic.png/revision/latest?cb=20231003093907",
+    "role": "user"
+  }
+]
