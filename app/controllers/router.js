@@ -9,7 +9,7 @@ const homeRouter = require("./../routes/home");
 const createRouter = require("./../routes/home");
 const gamesRouter = require("./../routes/games");
 const leaderboardRouter = require("./../routes/leaderboard");
-const stubRouter = require("./../routes/stubRouter");
+const stubRouter = require("./../routes/stub");
 
 //const productRouter = require("../routes/products")
 //const adminProductRouter = require("../routes/admin_products")
