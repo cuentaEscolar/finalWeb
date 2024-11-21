@@ -9,9 +9,11 @@ let play = document.getElementById("play");
 let leaderboard = document.getElementById("leaderboard");
 let stubber = (() => { window.location.href = "stub"; });
 
-if (sessionStorage.getItem("loggedIn") != null) {
+console.log(sessionStorage.getItem("loggedIn"));
+if (sessionStorage.getItem("loggedIn") === null || sessionStorage.getItem("loggedIn") === "false ") {
+  console.log("wat");
 
-  sessionStorage.setItem("loggedIn", false);
+  sessionStorage.setItem("loggedIn", "false");
   create.onclick = stubber;
   view.onclick = stubber;
   play.onclick = stubber;
