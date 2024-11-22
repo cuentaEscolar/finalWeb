@@ -20,8 +20,11 @@ class User {
   static generateFromJson(obj) {
     return this.generateFromObject(JSON.parse(obj));
   }
+  static getFields() {
+    return ["username", "email", "password", "role", "img"];
+  }
   static generateFromObject(obj) {
-    let fields = ["username", "email", "password", "role", "img"];
+    let fields = User.getFields();
     obj = utils.fieldCleanUp(fields, obj);
     let funkyUser = new User(obj["username"], obj["email"], obj["password"], obj["role"])
     if (obj["img"]) funkyUser.img_ = obj["img"];
