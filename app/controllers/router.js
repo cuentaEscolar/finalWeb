@@ -4,7 +4,8 @@ const express = require('express');
 const path = require("path");
 //const data_handler = require("./data_handler")
 const router = express.Router();
-const loginRouter = require("../routes/login")
+const loginRouter = require("../routes/login");
+const signUpRouter = require("../routes/signUp");
 const homeRouter = require("./../routes/home");
 const createRouter = require("./../routes/create");
 const gamesRouter = require("./../routes/games");
@@ -39,6 +40,7 @@ router.route("/").get((req, res) =>
 
 router.use('/home', homeRouter);
 router.use('/login', loginRouter);
+router.use('/signup', signUpRouter);
 router.use('/create', createRouter);
 router.use('/games', gamesRouter);
 router.use('/leaderboard', leaderboardRouter);
