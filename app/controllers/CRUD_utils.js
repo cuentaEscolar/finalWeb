@@ -43,7 +43,25 @@ function createX(xName) {
   }
 }
 
-function updateXbyY(yName, yVal) {
+function updateXbyY(xName, yName) {
+  return function(Model) {
+    return function(fields) {
+      return function(req, res) {
+        let yVal = req.params[yName];
+        let updatedX = req.body;
+        for (let property in updatedX) {
+          if (fields.includes(property)) continue;
+          delete updatedX[property];
+        }
+        let query = QueryFactory(yName, yVal);
+        Model.findOneAndUpdate(query, updatedX, { new: true }).then(
+          X => {
+            res.type("text/plain; charset=utf-8")
+            res.send(`${xName} ${X} was updated!`)
+          });
+      }
+    }
+  }
 
 }
 
@@ -63,5 +81,5 @@ function deleteXbyY(xName, yName) {
   }
 }
 
-module.exports = { getX, getXbyY, createX }
+module.exports = { getX, getXbyY, createX, deleteXbyY, updateXbyY }
 
