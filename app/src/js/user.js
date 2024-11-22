@@ -6,8 +6,8 @@ const generateUUID = utils.generateUUID;
 class User {
   constructor(username, email, password, role) {
     this.salt = bcrypt.genSaltSync(10);
-    this.username = username;
-    this.email_ = bcrypt.hashSync(email, this.salt);
+    this.username_ = username;
+    this.email_ = email;//bcrypt.hashSync(email, this.salt);
     this.password = bcrypt.hashSync(password, this.salt);
     this.role = role;
     this.uuid = generateUUID();
@@ -35,6 +35,10 @@ class User {
   }
   set email_(mail) {
     this.email = mail;
+  }
+
+  set username_(username) {
+    this.username = username;
   }
 }
 module.exports = User;

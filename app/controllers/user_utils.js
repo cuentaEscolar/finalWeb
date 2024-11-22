@@ -11,11 +11,11 @@ const rawUsers = JSON.parse(userJsonStr);
 
 let userArr = [];
 rawUsers.forEach(element => {
-	userArr.push(userClass.generateFromObject(element));
+  userArr.push(userClass.generateFromObject(element));
 });
 
 userArr.forEach((user) => {
-	UserModel(user).save().then((doc) => console.log(doc));
+  UserModel(user).save().then((doc) => console.log(doc));
 });
 
 const getUsers = CRUD_utils.getX(UserModel);
