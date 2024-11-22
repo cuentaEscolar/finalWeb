@@ -9,22 +9,46 @@ let play = document.getElementById("play");
 let leaderboard = document.getElementById("leaderboard");
 
 let profile = document.getElementsByClassName("profile").item(0);
-let usedToHave = `
-            <h2 class="card-title h4" id="username">Tu Cuenta</h2>
-            <div class="bg-dark p-3 rounded mb-3 login-box" id="box">
-              <li>Rewrote the JS to generate cleaner code</li>
-              <li>Rewrote the CSS</li>
-              <li>Added new features!</li>
-              </ul>
-            </div>
-            <h3 class="h5">Other Tools</h3>
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-light">HTML Cheatsheet</a></li>
-              <li><a href="#" class="text-light">Webmaster Links</a></li>
-              <li><a href="#" class="text-light">Site Ideas</a></li>
-            </ul>
+
+function refresher(){
+	console.log("freshy");
+	if (sessionStorage.getItem("loggedIn") === "false") {
+		profile.innerHTML = notLoggedInHtml;
+		let refresherId = document.getElementById("refresherId");
+		refresherId.addEventListener("click", ((e)=>refresher()) );
+	} else {
+		profile.innerHTML = logOutHtml;
+		let logOutId= document.getElementById("logOutId");
+		logOutId.addEventListener("click", ((e)=>log_out()) );
+	}
+}
+let notLoggedInHtml = `
+	<div class="box"> 
+	<img style="border-radius:50%;" src="https://static.wikia.nocookie.net/silly-cat/images/4/4f/Wire_Cat.png">
+	</div>
+	<h2 class="h4" id="h2Over"> Y you haz not logged in</h2>
+	<div class="row">
+		<a href="login" class="btn btn-primary" id="loginPage">Log in</a>
+		<a href="#" class="btn btn-primary" id="loginAsGuest">Log in as guest</a>
+	</div>
+	<div class="row">
+		<a href="#"  class="btn btn-primary" id="refresherId">Refresh</a>
+	</div>
 `
-profile.innerHTML = "Not Logged In\n";
+const log_out = ( ()=> {
+	sessionStorage.setItem("loggedIn", "false");
+	refresher();	
+});
+let logOutHtml  = `
+	<div class="row">
+		<a href="#"  class="btn btn-primary" id="logOutId">Log Out</a>
+	</div>
+`
+
+profile.innerHTML = notLoggedInHtml;
+let refresherId = document.getElementById("refresherId");
+refresherId.addEventListener("click", ((e)=>refresher()) );
+
 let hrefer = ((str) => { window.location.href = str; });
 let stubber = (() => { window.location.href = "stub"; });
 
@@ -36,8 +60,6 @@ let ifLoggedIn = ((str) => {
 		hrefer(str);
 	}
 });
-console.log(sessionStorage.getItem("loggedIn"));
-console.log(sessionStorage.getItem("loggedIn") === "false");
 
 if (sessionStorage.getItem("loggedIn") === null || sessionStorage.getItem("loggedIn") === "false") {
 	console.log("wat");
