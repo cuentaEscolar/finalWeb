@@ -21,6 +21,8 @@ userArr.forEach((user) => {
 const getUsers = CRUD_utils.getX(UserModel);
 const getUsersByUuid = CRUD_utils.getXbyY("uuid")(UserModel);
 const getUsersByEmail = CRUD_utils.getXbyY("email")(UserModel);
+const deleteUserByUuid = CRUD_utils.deleteXbyY("user","uuid")(UserModel);
+const updateUserByUuid = CRUD_utils.updateUserByUuid("user","uuid")(UserModel);
 
 
 function postUser() {
