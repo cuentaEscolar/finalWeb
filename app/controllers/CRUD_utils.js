@@ -24,7 +24,7 @@ function getX() {
 function getXbyY(yName) {
   return function(Model) {
     return function(req, res) {
-      let yVal = req.params[yStr];
+      let yVal = req.params[yName];
       let query = QueryFactory(yName, yVal);
       Model.findOne(query).then(x => res.status(200).json(x));
     }
