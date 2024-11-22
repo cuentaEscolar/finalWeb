@@ -9,6 +9,7 @@ const signUpRouter = require("../routes/signUp");
 const homeRouter = require("./../routes/home");
 const createRouter = require("./../routes/create");
 const gamesRouter = require("./../routes/games");
+const adminRouter = require("./../routes/admin");
 const leaderboardRouter = require("./../routes/leaderboard");
 const stubRouter = require("./../routes/stub");
 
@@ -41,6 +42,7 @@ router.route("/").get((req, res) =>
 router.use('/home', homeRouter);
 router.use('/login', loginRouter);
 router.use('/signup', signUpRouter);
+router.use('/admin', adminRouter);
 router.use('/create', createRouter);
 router.use('/games', gamesRouter);
 router.use('/leaderboard', leaderboardRouter);
