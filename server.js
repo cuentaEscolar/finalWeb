@@ -1,4 +1,7 @@
 "use strict";
+
+process.env.TOKEN_KEY = "22775973-3dbc-4ffb-8dbc-8ec1d6c15efb";
+
 const cors = require('cors');
 const express = require("express");
 const path = require("path");
