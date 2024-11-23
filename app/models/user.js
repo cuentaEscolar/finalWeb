@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 let mongoDB = 'mongodb://localhost:27017/UsersDB';
 let privateKey = process.env.TOKEN_KEY;
+console.log(privateKey);
 
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 
