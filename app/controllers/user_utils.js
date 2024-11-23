@@ -26,8 +26,8 @@ const getUserBy = {
   email: getXbyY("email")(UserModel),
 }
 const deleteUserBy = {
-  uuid: deleteXbyY("user","uuid")(UserModel),
-  email: deleteXbyY("user","email")(UserModel),
+  uuid: deleteXbyY("user", "uuid")(UserModel),
+  email: deleteXbyY("user", "email")(UserModel),
 }
 const updateUserBy = {
   email: updateXbyY("user", "email")(UserModel)(UserClass.getFields()),
@@ -35,8 +35,11 @@ const updateUserBy = {
 }
 
 function login(req, res) {
+  console.log(req.body);
+  console.log(req.params);
   let email = req.body.email;
   let password = req.body.password;
+  console.log(`the email and password are ${email} ${password}`)
 
   User.findOne({ email: `${email}` })
     .then(user => {

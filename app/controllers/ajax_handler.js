@@ -9,11 +9,11 @@ function getXhrResponse(xhr, onSuccess, onError) {
     onError(xhr.status + ":" + xhr.statusText);
   }
 }
-function login( emailPassword, onSuccess, onError){
+function login(emailPassword, onSuccess, onError) {
   let xhr = new XMLHttpRequest();
   xhr.open("POST", "/login", true);
-  xhr.setRequestHeader('Content-Type', "applications/json");
-  xhr.send(JSON.stringify(emailPassword));
+  xhr.setRequestHeader('Content-Type', "application/json");
   xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
+  xhr.send(JSON.stringify(emailPassword));
 
 }

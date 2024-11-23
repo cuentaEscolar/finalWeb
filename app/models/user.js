@@ -39,12 +39,14 @@ let userSchema = mongoose.Schema({
 
 userSchema.pre('save', function(next) {
   let user = this;
+  console.log(user);
   //  user.password = bcrypt.hashSync(user.password, 10);
   next();
 })
 
 userSchema.methods.generateToken = function(password, salt) {
   let user = this;
+  console.log(`This is the user ${user}`)
   let payload = { _id: user._id, role: user.role };
   let options = { expiresIn: 60 * 60 }
   let salted = bcrypt.hashSync(password, salt);
