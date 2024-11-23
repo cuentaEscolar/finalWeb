@@ -35,14 +35,13 @@ const updateUserBy = {
 }
 
 function login(req, res) {
-  console.log(req.body);
-  console.log(req.params);
   let email = req.body.email;
   let password = req.body.password;
   console.log(`the email and password are ${email} ${password}`)
 
   User.findOne({ email: `${email}` })
     .then(user => {
+      console.log("found user");
       let token = user.generateToken(password);
       console.log(token)
       if (token != undefined) {

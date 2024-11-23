@@ -44,12 +44,15 @@ userSchema.pre('save', function(next) {
   next();
 })
 
-userSchema.methods.generateToken = function(password, salt) {
+userSchema.methods.generateToken = function(password) {
   let user = this;
   console.log(`This is the user ${user}`)
   let payload = { _id: user._id, role: user.role };
   let options = { expiresIn: 60 * 60 }
+  let salt = user.salt;
+  console.log(password, salt);
   let salted = bcrypt.hashSync(password, salt);
+  console.log(bcrypt.compareSync(salted, user.password));
   if (bcrypt.compareSync(salted, user.password)) {
     try {
       user.token = jwt.sign(payload, privateKey, options);
