@@ -6,7 +6,13 @@ let password = document.getElementById("password");
 console.log("logged");
 
 function login_request() {
-  console.log(email.value);
-  console.log(password.value);
+  console.log("email, password");
+  let email_password = {
+    email: email.value,
+    password: password.value
+  };
+  console.log(email_password)
+  login(email_password, (() => console.log("success")), (() => console.log("failure"))
+  );
 }
 login_button.addEventListener("click", login_request);

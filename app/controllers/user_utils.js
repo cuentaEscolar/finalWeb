@@ -49,6 +49,7 @@ function login(req, res) {
       } else {
         res.status(404);
         res.set('Content-Type', 'text/plain; charset=utf-8');
+        consol.log("no such user");
         res.send(`Wrong email or password`);
       }
     })
