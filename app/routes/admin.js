@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.route("/users").get((req, res) => user_utils.getUsers(req, res));
 router.route("/users/uuid/:uuid")
-	.get((req, res) => user_utils.getUsersByUuid(req, res))
+	.get((req, res) => user_utils.getUserBy["uuid"](req, res))
 ;
 function debug(req, res, next){
 	console.log("HI");
@@ -16,6 +16,8 @@ function debug(req, res, next){
 }
 router.use("/users/email/:email",debug);
 router.route("/users/email/:email")
-	.get((req, res) => user_utils.getUsersByEmail(req, res))
-	.put((req,res) => user_utils.updateUserBy["email"](req,res));
+	.get((req, res) => user_utils.getUserBy["email"](req, res))
+	.put((req,res) => user_utils.updateUserBy["email"](req,res))
+	.delete((req,res) => user_utils.deleteUserBy["email"](req,res));
+
 module.exports = router;

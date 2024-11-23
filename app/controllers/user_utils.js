@@ -8,29 +8,64 @@ const User = require("../models/user");
 const userFile = path.join(__dirname, "./../data/users.json");
 const userJsonStr = fs.readFileSync(userFile);
 const rawUsers = JSON.parse(userJsonStr);
+const getXbyY = CRUD_utils.getXbyY;
+const deleteXbyY = CRUD_utils.deleteXbyY;
+const updateXbyY = CRUD_utils.deleteXbyY;
 
 let userArr = [];
 rawUsers.forEach(element => {
-  userArr.push(UserClass.generateFromObject(element));
-});
-
-userArr.forEach((user) => {
+  let user = UserClass.generateFromObject(element);
   UserModel(user).save().then((doc) => console.log(doc));
+  userArr.push(user);
 });
 
+const createUser = CRUD_utils.createX("User")(UserModel);
 const getUsers = CRUD_utils.getX(UserModel);
-const getUsersByUuid = CRUD_utils.getXbyY("uuid")(UserModel);
-const getUsersByEmail = CRUD_utils.getXbyY("email")(UserModel);
-const deleteUserByUuid = CRUD_utils.deleteXbyY("user", "uuid")(UserModel);
+const getUserBy = {
+  uuid: getXbyY("uuid")(UserModel),
+  email: getXbyY("email")(UserModel),
+}
+const deleteUserBy = {
+  uuid: deleteXbyY("uuid")(UserModel),
+  email: deleteXbyY("email")(UserModel),
+}
 const updateUserBy = {
-  email: CRUD_utils.updateXbyY("user", "email")(UserModel)(UserClass.getFields()),
-  uuid: CRUD_utils.updateXbyY("user", "uuid")(UserModel)(UserClass.getFields()),
+  email: updateXbyY("user", "email")(UserModel)(UserClass.getFields()),
+  uuid: updateXbyY("user", "uuid")(UserModel)(UserClass.getFields()),
+}
+
+function login(req, res) {
+  let email = req.body.email;
+  let password = req.body.password;
+
+  User.findOne({ email: `${email}` })
+    .then(user => {
+      let token = user.generateToken(password);
+      console.log(token)
+      if (token != undefined) {
+        res.status(200)
+        res.set('Content-Type', 'text/plain; charset=utf-8');
+        res.send(token);
+      } else {
+        res.status(404);
+        res.set('Content-Type', 'text/plain; charset=utf-8');
+        res.send(`Wrong email or password`);
+      }
+    })
+    .catch(err => {
+      res.status(404);
+      res.set('Content-Type', 'text/plain; charset=utf-8');
+      res.send(`Wrong email or password`);
+    });
 }
 
 
 module.exports = {
-  getUsers,
-  getUsersByUuid,
-  getUsersByEmail,
-  updateUserBy,
+  createUser, //C
+  getUsers,   // r 
+  getUserBy,  // r 
+  getUsersByEmail, // r
+  updateUserBy, // u
+  deleteUserBy,
+  login
 }
