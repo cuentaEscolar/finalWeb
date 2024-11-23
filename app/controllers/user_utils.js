@@ -11,7 +11,7 @@ const rawUsers = JSON.parse(userJsonStr);
 
 let userArr = [];
 rawUsers.forEach(element => {
-  userArr.push(userClass.generateFromObject(element));
+  userArr.push(UserClass.generateFromObject(element));
 });
 
 userArr.forEach((user) => {
@@ -21,16 +21,16 @@ userArr.forEach((user) => {
 const getUsers = CRUD_utils.getX(UserModel);
 const getUsersByUuid = CRUD_utils.getXbyY("uuid")(UserModel);
 const getUsersByEmail = CRUD_utils.getXbyY("email")(UserModel);
-const deleteUserByUuid = CRUD_utils.deleteXbyY("user","uuid")(UserModel);
+const deleteUserByUuid = CRUD_utils.deleteXbyY("user", "uuid")(UserModel);
 const updateUserBy = {
-  email : CRUD_utils.updateUserByUuid("user","uuid")(UserModel)(UserClass.getFields()),
-  uuid : CRUD_utils.updateUserByUuid("user","uuid")(UserModel)(UserClass.getFields()),
+  email: CRUD_utils.updateUserByUuid("user", "uuid")(UserModel)(UserClass.getFields()),
+  uuid: CRUD_utils.updateUserByUuid("user", "uuid")(UserModel)(UserClass.getFields()),
 }
 
 
-module.exports = { 
-  getUsers, 
-  getUsersByUuid, 
-  getUsersByEmail, 
-  updateUserBy, 
-  }
+module.exports = {
+  getUsers,
+  getUsersByUuid,
+  getUsersByEmail,
+  updateUserBy,
+}
