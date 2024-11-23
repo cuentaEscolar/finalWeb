@@ -69,6 +69,7 @@ function updateXbyY(xName, yName) {
 function deleteXbyY(xName, yName) {
   return function(Model) {
     return function(req, res) {
+      console.log(req);
       let yVal = req.params[yName];
       let query = QueryFactory(yName, yVal);
       Model.findOneAndDelete(query).then(X => {

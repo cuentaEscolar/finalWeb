@@ -10,7 +10,7 @@ const userJsonStr = fs.readFileSync(userFile);
 const rawUsers = JSON.parse(userJsonStr);
 const getXbyY = CRUD_utils.getXbyY;
 const deleteXbyY = CRUD_utils.deleteXbyY;
-const updateXbyY = CRUD_utils.deleteXbyY;
+const updateXbyY = CRUD_utils.updateXbyY;
 
 let userArr = [];
 rawUsers.forEach(element => {
@@ -26,8 +26,8 @@ const getUserBy = {
   email: getXbyY("email")(UserModel),
 }
 const deleteUserBy = {
-  uuid: deleteXbyY("uuid")(UserModel),
-  email: deleteXbyY("email")(UserModel),
+  uuid: deleteXbyY("user","uuid")(UserModel),
+  email: deleteXbyY("user","email")(UserModel),
 }
 const updateUserBy = {
   email: updateXbyY("user", "email")(UserModel)(UserClass.getFields()),
@@ -64,7 +64,6 @@ module.exports = {
   createUser, //C
   getUsers,   // r 
   getUserBy,  // r 
-  getUsersByEmail, // r
   updateUserBy, // u
   deleteUserBy,
   login

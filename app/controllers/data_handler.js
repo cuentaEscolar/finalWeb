@@ -2,10 +2,10 @@
 const User = require('./../models/user.js')
 const userClass = require("./../src/js/user.js");
 const user_utils = require("./user_utils.js")
-const getUsers = user_utils.getUsers; 
+const getUsers = user_utils.getUsers;
 
 
-module.exports = { getUsers};
+module.exports = { getUsers };
 /*
 
 const path = require("path")
