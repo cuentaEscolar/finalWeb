@@ -53,6 +53,7 @@ function updateXbyY(xName, yName) {
           if (fields.includes(property)) continue;
           delete updatedX[property];
         }
+        console.log(updatedX);
         let query = QueryFactory(yName, yVal);
         Model.findOneAndUpdate(query, updatedX, { new: true }).then(
           X => {
