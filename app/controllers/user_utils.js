@@ -23,8 +23,8 @@ const getUsersByUuid = CRUD_utils.getXbyY("uuid")(UserModel);
 const getUsersByEmail = CRUD_utils.getXbyY("email")(UserModel);
 const deleteUserByUuid = CRUD_utils.deleteXbyY("user", "uuid")(UserModel);
 const updateUserBy = {
-  email: CRUD_utils.updateUserByUuid("user", "uuid")(UserModel)(UserClass.getFields()),
-  uuid: CRUD_utils.updateUserByUuid("user", "uuid")(UserModel)(UserClass.getFields()),
+  email: CRUD_utils.updateXbyY("user", "email")(UserModel)(UserClass.getFields()),
+  uuid: CRUD_utils.updateXbyY("user", "uuid")(UserModel)(UserClass.getFields()),
 }
 
 
