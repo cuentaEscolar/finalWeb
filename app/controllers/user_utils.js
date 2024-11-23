@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const CRUD_utils = require("./CRUD_utils.js");
 const UserModel = require('../models/user')
-const userClass = require("./../src/js/user.js");
+const UserClass = require("./../src/js/user.js");
 const User = require("../models/user");
 
 const userFile = path.join(__dirname, "./../data/users.json");
@@ -22,11 +22,15 @@ const getUsers = CRUD_utils.getX(UserModel);
 const getUsersByUuid = CRUD_utils.getXbyY("uuid")(UserModel);
 const getUsersByEmail = CRUD_utils.getXbyY("email")(UserModel);
 const deleteUserByUuid = CRUD_utils.deleteXbyY("user","uuid")(UserModel);
-const updateUserByUuid = CRUD_utils.updateUserByUuid("user","uuid")(UserModel);
-
-
-function postUser() {
-
+const updateUserBy = {
+  email : CRUD_utils.updateUserByUuid("user","uuid")(UserModel)(UserClass.getFields()),
+  uuid : CRUD_utils.updateUserByUuid("user","uuid")(UserModel)(UserClass.getFields()),
 }
 
-module.exports = { getUsers, getUsersByUuid, getUsersByEmail }
+
+module.exports = { 
+  getUsers, 
+  getUsersByUuid, 
+  getUsersByEmail, 
+  updateUserBy, 
+  }
