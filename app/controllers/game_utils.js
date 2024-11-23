@@ -22,7 +22,9 @@ gameArr.forEach((game) => {
 
 // Funciones CRUD para trabajar con GameModel
 const getGames = CRUD_utils.getX(GameModel);
-const getGamesById = CRUD_utils.getXbyY("id")(GameModel);
+const getGamesBy = {
+
+}
 const getGamesByName = CRUD_utils.getXbyY("name")(GameModel);
 const deleteGameById = CRUD_utils.deleteXbyY("game", "id")(GameModel);
 const updateGameBy = {

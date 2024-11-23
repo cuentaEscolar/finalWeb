@@ -1,8 +1,23 @@
 "use strict";
+const path = require("path");
+const fs = require("fs");
+const { raw } = require("express");
+
 function QueryFactory(name, val) {
   let str = `{ "${name}" :"${val}"}`;
   return JSON.parse(str);
 }
+
+const loadXandReturn = location => Model => Xclass => {
+  let rawXs = JSON.parse(fs.readFileSync(path.join(__dirname, location)));
+  let toRet = [];
+  rawXs.forEach(element => {
+    let X = Xclass.generateFromObject(element);
+    Model(X).save().then((doc) => console.log(doc));
+    toRet.push(X);
+  });
+  return toRet;
+};
 
 function getModelReqRes(f) {
   return function(Model) {
@@ -30,6 +45,16 @@ function getXbyY(yName) {
     }
   }
 }
+
+/*const getXbyY = (
+  (yName) =>
+    (Model) =>
+      (req, res) => {
+        let yVal = req.params[yName];
+        let query = QueryFactory(yName, yVal);
+        Model.findOne(query).then(x => res.status(200).json(x));
+      }
+);*/
 
 function createX(xName) {
   return function(Model) {
@@ -83,5 +108,5 @@ function deleteXbyY(xName, yName) {
   }
 }
 
-module.exports = { getX, getXbyY, createX, deleteXbyY, updateXbyY }
+module.exports = { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY }
 

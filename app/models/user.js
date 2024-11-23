@@ -47,7 +47,6 @@ userSchema.pre('save', function(next) {
 
 userSchema.methods.generateToken = function(password) {
   let user = this;
-  console.log(`This is the user ${user}`)
   let payload = { _id: user._id, role: user.role };
   let options = { expiresIn: 60 * 60 }
   let salt = user.salt;

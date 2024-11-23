@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const CRUD_utils = require("./CRUD_utils.js");
+const { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY } = require("./CRUD_utils.js");
 const UserModel = require('../models/user')
 const UserClass = require("./../src/js/user.js");
 const User = require("../models/user");
@@ -8,16 +9,14 @@ const User = require("../models/user");
 const userFile = path.join(__dirname, "./../data/users.json");
 const userJsonStr = fs.readFileSync(userFile);
 const rawUsers = JSON.parse(userJsonStr);
-const getXbyY = CRUD_utils.getXbyY;
-const deleteXbyY = CRUD_utils.deleteXbyY;
-const updateXbyY = CRUD_utils.updateXbyY;
 
 let userArr = [];
-rawUsers.forEach(element => {
+userArr = loadXandReturn("./../data/users.json")(UserModel);
+/*rawUsers.forEach(element => {
   let user = UserClass.generateFromObject(element);
   UserModel(user).save().then((doc) => console.log(doc));
   userArr.push(user);
-});
+});*/
 
 const createUser = CRUD_utils.createX("User")(UserModel);
 const getUsers = CRUD_utils.getX(UserModel);

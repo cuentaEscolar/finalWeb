@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const CRUD_utils = require("./CRUD_utils.js");
+const { getX, getXbyY, createX, deleteXbyY, updateXbyY } = require("./CRUD_utils.js")
 const RecordModel = require("../models/record");
 const RecordClass = require("./../src/js/record.js");
 

@@ -3,9 +3,10 @@
 let login_button = document.getElementById("login_button");
 let email = document.getElementById("email");
 let password = document.getElementById("password");
-console.log("logged");
+console.log("loggedStartup");
 
 function login_request() {
+  console.log("hi. Someon tried to login. yay");
   console.log("email, password");
   let email_password = {
     email: email.value,
