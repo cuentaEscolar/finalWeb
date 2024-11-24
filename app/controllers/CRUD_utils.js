@@ -7,6 +7,29 @@ function QueryFactory(name, val) {
   let str = `{ "${name}" :"${val}"}`;
   return JSON.parse(str);
 }
+function advancedQueryFactory(names, vals) {
+  let str = "{";
+  let len = names.length;
+  let subStr = [];
+  for (let i= 0; i< len; i++) {
+    subStr.push(` "${names[i]}" :"${vals[i]}"`);
+  }
+  str += subStr.join(",");
+  str += "}";
+  console.log(str)
+  return JSON.parse(str);
+}
+
+const fThenJsonOnXbyYs = f => xName => yNames => Model => (req, res) => {
+  let yVals = [];
+  console.log(`yNames ${yNames}`);
+  yNames.forEach(element => {
+    yVals.push(req.params[element]);
+  });
+  let query = advancedQueryFactory(yNames, yVals);
+  console.log(query);
+  Model[f](query).then(users => res.status(200).json(users));
+}
 
 const loadXandReturn = location => Model => Xclass => {
   let rawXs = JSON.parse(fs.readFileSync(path.join(__dirname, location)));
@@ -28,25 +51,30 @@ function getModelReqRes(f) {
 }
 
 //const getX = Model => (req, res) => m 
-const getX = Model => (req, res) => {
-      Model.find({}).then(users => res.status(200).json(users));
+function jsonRes(x) {
+  res.status(200).json(x);
 }
+const getX = fThenJsonOnXbyYs("find")([])([]);
+/*const getX = Model => (req, res) => {
+  Model.find({}).then(users => res.status(200).json(users));
+}*/
+const getXbyY = fThenJsonOnXbyYs("findOne")([]);
 
 
-const getXbyY = yName => Model => (req,res) => {
-      let yVal = req.params[yName];
-      let query = QueryFactory(yName, yVal);
-      Model.findOne(query).then(x => res.status(200).json(x));
-    }
+/*const getXbyY = yName => Model => (req, res) => {
+  let yVal = req.params[yName];
+  let query = QueryFactory(yName, yVal);
+  Model.findOne(query).then(x => res.status(200).json(x));
+}*/
 
 
-const createX = xName => Model => (req,res) =>  {
-    let x = Model(req.body);
-    x.save().then((x) => {
-      res.set("Content-Type", "text/plain; charset=utf-8");
-      res.send(`${xName} ${x} was created!`);
-    });
-  }
+const createX = xName => Model => (req, res) => {
+  let x = Model(req.body);
+  x.save().then((x) => {
+    res.set("Content-Type", "text/plain; charset=utf-8");
+    res.send(`${xName} ${x} was created!`);
+  });
+}
 
 function updateXbyY(xName, yName) {
   return function(Model) {
@@ -70,7 +98,10 @@ function updateXbyY(xName, yName) {
   }
 
 }
+const deleteXbyYs = xName => yNames => Model => (req, res) => {
+  let yVals = [];
 
+}
 function deleteXbyY(xName, yName) {
   return function(Model) {
     return function(req, res) {
@@ -87,7 +118,7 @@ function deleteXbyY(xName, yName) {
     }
   }
 }
-const dropModel = Model => (req,res) => Model.deleteMany({}).then(()=>console.log("oops"));
+const dropModel = Model => (req, res) => Model.deleteMany({}).then(() => console.log("oops"));
 
-module.exports = { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY, dropModel}
+module.exports = { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY, dropModel }
 

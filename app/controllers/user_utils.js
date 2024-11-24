@@ -1,28 +1,19 @@
 const fs = require("fs");
 const path = require("path");
-const CRUD_utils = require("./CRUD_utils.js");
 const { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY, dropModel } = require("./CRUD_utils.js");
 const UserModel = require('../models/user')
 const UserClass = require("./../src/js/user.js");
 const User = require("../models/user");
 
-const userFile = path.join(__dirname, "./../data/users.json");
-const userJsonStr = fs.readFileSync(userFile);
-const rawUsers = JSON.parse(userJsonStr);
-
 let userArr = [];
-userArr = loadXandReturn("./../data/users.json")(UserModel);
-/*rawUsers.forEach(element => {
-  let user = UserClass.generateFromObject(element);
-  UserModel(user).save().then((doc) => console.log(doc));
-  userArr.push(user);
-});*/
+userArr = loadXandReturn("./../data/users.json")(UserModel)(UserClass);
+console.log(userArr);
 
 const createUser = createX("User")(UserModel);
 const getUsers = getX(UserModel);
 const getUserBy = {
-  uuid: getXbyY("uuid")(UserModel),
-  email: getXbyY("email")(UserModel),
+  uuid: getXbyY(["uuid"])(UserModel),
+  email: getXbyY(["email"])(UserModel),
 }
 const deleteUserBy = {
   uuid: deleteXbyY("user", "uuid")(UserModel),

@@ -1,29 +1,20 @@
 const fs = require("fs");
 const path = require("path");
 const CRUD_utils = require("./CRUD_utils.js");
+const { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY, dropModel } = require("./CRUD_utils.js");
 const GameModel = require("../models/game");
 const GameClass = require("./../src/js/game.js");
-
-// Leer el archivo de datos JSON para cargar los juegos
-const gameFile = path.join(__dirname, "./../data/games.json");
-const gameJsonStr = fs.readFileSync(gameFile, "utf-8");
-const rawGames = JSON.parse(gameJsonStr);
-
-// Convertir los datos crudos del JSON a instancias de GameClass
-let gameArr = [];
-rawGames.forEach(element => {
-  gameArr.push(GameClass.generateFromObject(element));
-});
-
-// Guardar los juegos en la base de datos utilizando el modelo
-gameArr.forEach((game) => {
-  GameModel(game).save().then((doc) => console.log("Game saved:", doc));
-});
+const Game = require("../models/game");
 
 // Funciones CRUD para trabajar con GameModel
-const getGames = CRUD_utils.getX(GameModel);
-const getGamesBy = {
-
+const getGames = getX(GameModel);
+const getGameBy = {
+  uuid: getXbyY("uuid")(GameModel),
+  title: getXbyY("title")(GameModel),
+}
+const deleteGameBy = {
+  uuid: deleteXbyY("uuid")(GameModel),
+  title: deleteXbyY("title")(GameModel),
 }
 const getGamesByName = CRUD_utils.getXbyY("name")(GameModel);
 const deleteGameById = CRUD_utils.deleteXbyY("game", "id")(GameModel);
