@@ -9,10 +9,6 @@ let game = {
   answers: [],
   scores: [],
 }
-const getX = (x) => sessionStorage.getItem(x);
-if (getX("authToken")==="false" || getX("authToken") == null){
-  window.location.href =  "/stub";
-}
 // Aquí obten el input de titulo
 let title = document.getElementById("titleInput");
 // Aquí busca y guarda el elemento del botón de Generar Tablero
