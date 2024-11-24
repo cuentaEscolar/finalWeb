@@ -23,6 +23,4 @@ app.use(router);
 
 app.listen(port, () => console.log("listening on port 3k"));
 
-let testUsers = dataHandler.getUsers();
 
-console.log(testUsers);

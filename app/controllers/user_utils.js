@@ -19,7 +19,7 @@ userArr = loadXandReturn("./../data/users.json")(UserModel);
 });*/
 
 const createUser = CRUD_utils.createX("User")(UserModel);
-const getUsers = CRUD_utils.getX(UserModel);
+const getUsers = getX(UserModel);
 const getUserBy = {
   uuid: getXbyY("uuid")(UserModel),
   email: getXbyY("email")(UserModel),

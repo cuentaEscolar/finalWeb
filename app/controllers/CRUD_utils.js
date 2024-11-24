@@ -27,12 +27,9 @@ function getModelReqRes(f) {
   }
 }
 
-function getX() {
-  return function(Model) {
-    return function(req, res) {
-      Model.find({}).then(Xs => res.status(200).json(Xs));
-    }
-  }
+//const getX = Model => (req, res) => m 
+const getX = Model => (req, res) => {
+      Model.find({}).then(users => res.status(200).json(users));
 }
 
 
