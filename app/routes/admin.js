@@ -14,8 +14,8 @@ router.route("/users/kill")
 ;
 function debug(req, res, next) {
   console.log("HI");
-  console.log(user_utils.updateUserBy);
-  console.log(user_utils.updateUserBy["email"]);
+  // console.log(user_utils.updateUserBy);
+  //console.log(user_utils.updateUserBy["email"]);
   return next();
 }
 router.use("/users/email/:email", debug);
