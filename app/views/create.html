@@ -168,9 +168,9 @@
   <div class="modal fade" id="gameSummaryModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
+      <div class="modal-content" id="main">
         <div class="modal-header">
-          <h5 class="modal-title">Jeopardy Designer</h5>
+          <h2 class="modal-title">Jeopardy Designer</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -178,16 +178,12 @@
         <div class="modal-body">
           <div class="container">
             <div class="question">
-              <p>Tema: <span id="modalTopic"></span> </p>
-              <p>Valor: <span id="modalScore"></span> </p>
               <div class="form-group">
                 <label for="">Pregunta: </label>
                 <textarea class="form-control" name="" id="" rows="3" placeholder="Escribe tu pregunta"></textarea>
               </div>
             </div>
             <div class="answer">
-              <p>Tema: <span id="modalTopic"></span> </p>
-              <p>Valor: <span id="modalScore"></span> </p>
               <div class="form-group">
                 <label for="">Respuesta: </label>
                 <textarea class="form-control" name="" id="" rows="3" placeholder="Escribe su Respuesta"></textarea>
@@ -195,7 +191,7 @@
             </div>
             <div class="theme">
               <div class="form-group">
-                <label for="">Tema</label>
+                <label for=""><h2 class="h4" id="h2Over">Tema</h2></label>
                 <input type="text" class="form-control" placeholder="temática">
               </div>
             </div>
