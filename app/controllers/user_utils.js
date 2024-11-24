@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const CRUD_utils = require("./CRUD_utils.js");
-const { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY } = require("./CRUD_utils.js");
+const { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY, dropModel } = require("./CRUD_utils.js");
 const UserModel = require('../models/user')
 const UserClass = require("./../src/js/user.js");
 const User = require("../models/user");
@@ -18,7 +18,7 @@ userArr = loadXandReturn("./../data/users.json")(UserModel);
   userArr.push(user);
 });*/
 
-const createUser = CRUD_utils.createX("User")(UserModel);
+const createUser = createX("User")(UserModel);
 const getUsers = getX(UserModel);
 const getUserBy = {
   uuid: getXbyY("uuid")(UserModel),
@@ -32,7 +32,7 @@ const updateUserBy = {
   email: updateXbyY("user", "email")(UserModel)(UserClass.getFields()),
   uuid: updateXbyY("user", "uuid")(UserModel)(UserClass.getFields()),
 }
-
+const dropUsers = dropModel(UserModel);
 function login(req, res) {
   let email = req.body.email;
   let password = req.body.password;
@@ -68,5 +68,6 @@ module.exports = {
   getUserBy,  // r 
   updateUserBy, // u
   deleteUserBy,
-  login
+  login,
+  dropUsers
 }

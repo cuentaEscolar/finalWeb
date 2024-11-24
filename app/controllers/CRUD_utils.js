@@ -33,37 +33,20 @@ const getX = Model => (req, res) => {
 }
 
 
-function getXbyY(yName) {
-  return function(Model) {
-    return function(req, res) {
+const getXbyY = yName => Model => (req,res) => {
       let yVal = req.params[yName];
       let query = QueryFactory(yName, yVal);
       Model.findOne(query).then(x => res.status(200).json(x));
     }
-  }
-}
 
-/*const getXbyY = (
-  (yName) =>
-    (Model) =>
-      (req, res) => {
-        let yVal = req.params[yName];
-        let query = QueryFactory(yName, yVal);
-        Model.findOne(query).then(x => res.status(200).json(x));
-      }
-);*/
 
-function createX(xName) {
-  return function(Model) {
-    return function(req, res) {
-      let x = Model(req.body);
-      x.save().then((x) => {
-        res.set("Content-Type", "text/plain; charset=utf-8");
-        res.send(`${xName} ${x} was created!`)
-      });
-    }
+const createX = xName => Model => (req,res) =>  {
+    let x = Model(req.body);
+    x.save().then((x) => {
+      res.set("Content-Type", "text/plain; charset=utf-8");
+      res.send(`${xName} ${x} was created!`);
+    });
   }
-}
 
 function updateXbyY(xName, yName) {
   return function(Model) {
@@ -104,6 +87,7 @@ function deleteXbyY(xName, yName) {
     }
   }
 }
+const dropModel = Model => (req,res) => Model.deleteMany({}).then(()=>console.log("oops"));
 
-module.exports = { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY }
+module.exports = { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY, dropModel}
 
