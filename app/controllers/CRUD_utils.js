@@ -21,15 +21,17 @@ function advancedQueryFactory(names, vals) {
 }
 const queryFromReqRes = yNames => (req, res) => {
   let yVals = [];
-  console.log(`yNames ${yNames}`);
   yNames.forEach(element => {
     yVals.push(req.params[element]);
   });
+  console.log(`yNames ${yNames}`);
+  console.log(`yVals ${yVals}`);
   return advancedQueryFactory(yNames, yVals);
 }
 //It should be noted that g :: (req, res, ...theArgs) => IO
 const fThenGonModelbyYs = f => g => yNames => Model => (req, res) => {
   let query = queryFromReqRes(yNames)(req, res);
+  console.log(`query ${JSON.stringify(query)}`);
   Model[f](query).then(x => g(req, res, x));
 }
 

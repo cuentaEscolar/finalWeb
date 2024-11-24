@@ -25,6 +25,11 @@ const updateUserBy = {
   uuid: updateXbyY("user", "uuid")(UserModel)(UserClass.getFields()),
 }
 const dropUsers = dropModel(UserModel);
+const getFullInfo = (req, res) => {
+  let uuid = req.body.uuid;
+  req.params["uuid"] = uuid;
+  return getUserBy["uuid"](req,res);
+}
 function login(req, res) {
   let email = req.body.email;
   let password = req.body.password;
@@ -60,5 +65,6 @@ module.exports = {
   updateUserBy, // u
   deleteUserBy,
   login,
-  dropUsers
+  dropUsers,
+  getFullInfo
 }

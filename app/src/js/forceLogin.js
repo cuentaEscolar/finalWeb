@@ -12,12 +12,13 @@ let profile = document.getElementsByClassName("profile").item(0);
 function userInfoRequest() {
 
   let user = parseJwt(sessionStorage.getItem("authToken"));
-  let id_req = {_id : user._id};
-  genericPost("/user")(id_req,saveUser, (x)=>console.log(x));
+  let id_req = { uuid: user.uuid};
+  console.log(`idreq ${JSON.stringify(id_req)}`);
+  genericPost("/user")(id_req, saveUser, (x) => console.log(`failure`));
 
 }
-function saveUser(x){
-  sessionStorage.setItem("userInfo",x);
+function saveUser(x) {
+  sessionStorage.setItem("userInfo", x);
 }
 function refresher() {
   console.log("freshy");
@@ -26,8 +27,9 @@ function refresher() {
     let refresherId = document.getElementById("refresherId");
     refresherId.addEventListener("click", ((e) => refresher()));
   } else {
-    profile.innerHTML = logOutHtml;
     userInfoRequest();
+    let user = JSON.parse(sessionStorage.getItem("userInfo"));
+    profile.innerHTML = logOutHtml(user);
     console.log(sessionStorage.getItem("userInfo"));
     let logOutId = document.getElementById("logOutId");
     logOutId.addEventListener("click", ((e) => log_out()));
@@ -50,11 +52,25 @@ const log_out = (() => {
   sessionStorage.setItem("authToken", "false");
   refresher();
 });
-let logOutHtml = `
-	<div class="row">
-		<a href="#"  class="btn btn-primary" id="logOutId">Log Out</a>
+const logOutHtml = x =>  {
+ let y =`
+  <div class="container">
+    <div class="row">
+      <h2 id="h2Over">${x["username"]}</h2> 
+    </div>
+    <div class="row">
+      <img style="border-radius:50%;" 
+      src="${x["img"]}">
+    </div>
+    <div class="row">
+    </div>
+    <div class="row">
+      <a href="#"  class="btn btn-primary" id="logOutId">log out</a>
+    </div>
 	</div>
 `
+  return y;
+}
 
 profile.innerHTML = notLoggedInHtml;
 let refresherId = document.getElementById("refresherId");
@@ -77,6 +93,7 @@ if (sessionStorage.getItem("authToken") === null || sessionStorage.getItem("auth
   sessionStorage.setItem("authToken", "false");
 } else {
   console.log("logged in");
+  refresher();
 }
 
 create.addEventListener("click", (e) => ifLoggedIn("create"));

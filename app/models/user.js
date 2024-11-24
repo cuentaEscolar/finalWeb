@@ -47,7 +47,7 @@ userSchema.pre('save', function(next) {
 
 userSchema.methods.generateToken = function(password) {
   let user = this;
-  let payload = { _id: user._id, role: user.role };
+  let payload = { uuid: user.uuid, role: user.role };
   let options = { expiresIn: 60 * 60 }
   let salt = user.salt;
   if (bcrypt.compareSync(password, user.password)) {
