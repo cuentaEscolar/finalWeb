@@ -1,6 +1,14 @@
 "use strict";
-//const user_utils = request("user_utils") 
+let privateKey = process.env.TOKEN_KEY;
+function parseJwt(token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
 
+  return JSON.parse(jsonPayload);
+}
 function getXhrResponse(xhr, onSuccess, onError) {
   if (xhr.status == 200) {
     console.log("responseText");
@@ -9,7 +17,7 @@ function getXhrResponse(xhr, onSuccess, onError) {
     onError(xhr.status + ":" + xhr.statusText);
   }
 }
-function login(emailPassword, onSuccess, onError) {
+function loginFunc(emailPassword, onSuccess, onError) {
   let xhr = new XMLHttpRequest();
   xhr.open("POST", "/login", true);
   xhr.setRequestHeader('Content-Type', "application/json");

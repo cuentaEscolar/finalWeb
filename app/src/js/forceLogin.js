@@ -10,17 +10,19 @@ let leaderboard = document.getElementById("leaderboard");
 
 let profile = document.getElementsByClassName("profile").item(0);
 
-function refresher(){
-	console.log("freshy");
-	if (sessionStorage.getItem("loggedIn") === "false") {
-		profile.innerHTML = notLoggedInHtml;
-		let refresherId = document.getElementById("refresherId");
-		refresherId.addEventListener("click", ((e)=>refresher()) );
-	} else {
-		profile.innerHTML = logOutHtml;
-		let logOutId= document.getElementById("logOutId");
-		logOutId.addEventListener("click", ((e)=>log_out()) );
-	}
+function refresher() {
+  console.log("freshy");
+  if (sessionStorage.getItem("authToken") === "false") {
+    profile.innerHTML = notLoggedInHtml;
+    let refresherId = document.getElementById("refresherId");
+    refresherId.addEventListener("click", ((e) => refresher()));
+  } else {
+    console.log(
+      parseJwt(sessionStorage.getItem("authToken")));
+    profile.innerHTML = logOutHtml;
+    let logOutId = document.getElementById("logOutId");
+    logOutId.addEventListener("click", ((e) => log_out()));
+  }
 }
 let notLoggedInHtml = `
 	<div class="box"> 
@@ -35,11 +37,11 @@ let notLoggedInHtml = `
 		<a href="#"  class="btn btn-primary" id="refresherId">Refresh</a>
 	</div>
 `
-const log_out = ( ()=> {
-	sessionStorage.setItem("loggedIn", "false");
-	refresher();	
+const log_out = (() => {
+  sessionStorage.setItem("loggedIn", "false");
+  refresher();
 });
-let logOutHtml  = `
+let logOutHtml = `
 	<div class="row">
 		<a href="#"  class="btn btn-primary" id="logOutId">Log Out</a>
 	</div>
@@ -47,23 +49,23 @@ let logOutHtml  = `
 
 profile.innerHTML = notLoggedInHtml;
 let refresherId = document.getElementById("refresherId");
-refresherId.addEventListener("click", ((e)=>refresher()) );
+refresherId.addEventListener("click", ((e) => refresher()));
 
 let hrefer = ((str) => { window.location.href = str; });
 let stubber = (() => { window.location.href = "stub"; });
 
 let ifLoggedIn = ((str) => {
-	console.log(str);
-	if (sessionStorage.getItem("loggedIn") === "false") {
-		stubber();
-	} else {
-		hrefer(str);
-	}
+  console.log(str);
+  if (sessionStorage.getItem("authToken") === "false") {
+    stubber();
+  } else {
+    hrefer(str);
+  }
 });
 
-if (sessionStorage.getItem("loggedIn") === null || sessionStorage.getItem("loggedIn") === "false") {
-	console.log("wat");
-	sessionStorage.setItem("loggedIn", "false");
+if (sessionStorage.getItem("authToken") === null || sessionStorage.getItem("authToken") === "false") {
+  console.log("wat");
+  sessionStorage.setItem("authToken", "false");
 }
 
 create.addEventListener("click", (e) => ifLoggedIn("create"));

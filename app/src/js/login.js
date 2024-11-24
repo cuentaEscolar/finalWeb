@@ -4,6 +4,11 @@ let login_button = document.getElementById("login_button");
 let email = document.getElementById("email");
 let password = document.getElementById("password");
 console.log("loggedStartup");
+function onSuccess(x) {
+  console.log("success");
+  sessionStorage.setItem("authToken", x);
+  window.location.href = "home";
+}
 
 function login_request() {
   console.log("email, password");
@@ -12,7 +17,7 @@ function login_request() {
     password: password.value
   };
   console.log(email_password)
-  login(email_password, (() => console.log("success")), (() => console.log("failure"))
+  loginFunc(email_password, onSuccess, (() => console.log("failure"))
   );
 }
 login_button.addEventListener("click", login_request);
