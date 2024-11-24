@@ -29,58 +29,6 @@ let theadRow = thead.childNodes[1].childNodes;
 // almacenará la celda actual (cuando den clic en algún link a editar)
 let cell;  // esta variable se usará después en la función de requestData()
 
-function create_thead(cols) {
-  let str = `<thead>
-                  <tr>
-                    <th>Valores </th>
-   `;
-  for (let index = 0; index < cols; index++) {
-    str += `
-                    <th><a href="#" data-toggle="modal" data-target="#gameSummaryModal">Tema${index + 1}</a></th>
-    `;
-  }
-
-  str += `
-                  </tr>
-                </thead>
-  `
-  return str;
-}
-function create_td(rows, cols) {
-  let s = `
-                    <td><a href="#" data-toggle="modal" data-target="#gameSummaryModal">Pregunta:Tema${cols}-${(rows + 1) * 100}</a></td>
-`
-  return s;
-}
-
-function create_tbody(rows, cols) {
-  let str = `
-                <tbody>
-                `
-  for (let index = 0; index < rows; index++) {
-    str += `
-                  <tr>
-                    <td scope="row">${(index + 1) * 100}</td>
-    `
-    for (let jndex = 0; jndex < cols; jndex++) {
-      str += create_td(index, jndex);
-    }
-    str += `
-                  </tr>
-    `
-  }
-  str += `
-                </tbody>
-  `
-  return str;
-}
-function fillTable(rows, cols) {
-  let generatedTable = create_thead(cols);
-  generatedTable += create_tbody(rows, cols);
-  mainTable.innerHTML = generatedTable;
-
-}
-
 
 // añade un handler a keyup para que cuando el titulo tenga texto se active el boton
 //  y si no tiene que se desactive  (añade o quita la clase disabled)
