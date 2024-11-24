@@ -6,7 +6,6 @@ let password = document.getElementById("password");
 console.log("loggedStartup");
 
 function login_request() {
-  console.log("hi. Someon tried to login. yay");
   console.log("email, password");
   let email_password = {
     email: email.value,

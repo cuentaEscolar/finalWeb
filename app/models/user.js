@@ -50,10 +50,7 @@ userSchema.methods.generateToken = function(password) {
   let payload = { _id: user._id, role: user.role };
   let options = { expiresIn: 60 * 60 }
   let salt = user.salt;
-  console.log(password, salt);
-  let salted = bcrypt.hashSync(password, salt);
-  console.log(bcrypt.compareSync(salted, user.password));
-  if (bcrypt.compareSync(salted, user.password)) {
+  if (bcrypt.compareSync(password, user.password)) {
     try {
       user.token = jwt.sign(payload, privateKey, options);
       return user.token;
