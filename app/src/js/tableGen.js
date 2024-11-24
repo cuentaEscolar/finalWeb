@@ -31,6 +31,58 @@ let theadRow = thead.childNodes[1].childNodes;
 // almacenará la celda actual (cuando den clic en algún link a editar)
 let cell;  // esta variable se usará después en la función de requestData()
 
+function create_thead(cols){
+  let str = `<thead>
+                  <tr>
+                    <th>Valores </th>
+   `; 
+  for (let index = 0; index < cols; index++) {
+    str += `
+                    <th><a href="#" data-toggle="modal" data-target="#gameSummaryModal">Tema${index+1}</a></th>
+    `;
+  }
+
+  str += `
+                  </tr>
+                </thead>
+  `
+  return str;
+}
+function create_td(rows, cols){
+  let s = `
+                    <td><a href="#" data-toggle="modal" data-target="#gameSummaryModal">Pregunta:Tema${cols}-${(rows+1)*100}</a></td>
+`
+  return s;
+}
+
+function create_tbody(rows, cols){
+let str = `
+                <tbody>
+                `
+  for (let index = 0; index < rows ; index++) {
+    str += `
+                  <tr>
+                    <td scope="row">${(index+1)*100}</td>
+    `
+    for (let jndex = 0; jndex < cols; jndex++){
+        str += create_td(index, jndex);
+    }
+    str += `
+                  </tr>
+    `
+  }
+  str += `
+                </tbody>
+  `
+  return str;
+}
+function fillTable(rows, cols){
+  let generatedTable = create_thead(cols);
+  generatedTable += create_tbody(rows, cols);
+  mainTable.innerHTML = generatedTable;
+  
+}
+
 
 // añade un handler a keyup para que cuando el titulo tenga texto se active el boton
 //  y si no tiene que se desactive  (añade o quita la clase disabled)
@@ -133,38 +185,12 @@ function generateGameBoard(event) {
   cols = document.getElementById("colsInput");
   title = document.getElementById("titleInput");
   rowsVal, colsVal; rowsVal = rows.value; colsVal = cols.value;
-  //console.log(mainTable.innerHTML);
-
-  //let title =  title;
-
-  // oculta renglones y columnas innecesarios
-  // tip: primero muestra todo (tr, td y th) puedes usar un forEach  (se puede en una línea de código)
-  let i_rows = 0;
-  tbody.childNodes.forEach((element) => {
-    if (element.nodeName === "#text") return;
-    element.removeAttribute("hidden");
-    if (i_rows >= rowsVal) element.setAttribute("hidden", "");
-    let i_cols = 0;
-    element.childNodes.forEach((element2) => {
-      if (element2.nodeName === "#text") return;
-      element2.removeAttribute("hidden");
-      if (i_cols > colsVal) element2.setAttribute("hidden", "");
-      i_cols += 1;
-    });
-    i_rows += 1;
-  });
   //console.log(theadRow);return;
-  let i_cols = 0;
-  theadRow.forEach((element) => {
-    if (element.nodeName === "#text") return;
-    //  console.log(element);
-    element.removeAttribute("hidden");
-    if (i_cols > colsVal) element.setAttribute("hidden", "");
-    i_cols += 1;
-
-  });
   // selecciona los reglones usando nth-of-type(n+ algo ) y oculta
   // selecciona las columnas usando nth-of type(n+ algo ) para td y th
+  console.log(`colsVal: ${colsVal}`);
+  fillTable(rowsVal,colsVal);
+  
 
   // muestra la tabla (propiedad hidden)
   mainTable.removeAttribute('hidden');
