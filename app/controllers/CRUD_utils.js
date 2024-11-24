@@ -28,14 +28,9 @@ const queryFromReqRes = yNames => (req, res) => {
   return advancedQueryFactory(yNames, yVals);
 }
 //It should be noted that g :: (req, res, ...theArgs) => IO
-const fThenGonModelbyYs = f => yNames => Model => g => (req, res) => {
-
-}
-
-const fThenJsonOnXbyYs = f => xName => yNames => Model => (req, res) => {
+const fThenGonModelbyYs = f => g => yNames => Model => (req, res) => {
   let query = queryFromReqRes(yNames)(req, res);
-  console.log(query);
-  Model[f](query).then(users => res.status(200).json(users));
+  Model[f](query).then(x => g(req, res, x));
 }
 
 const loadXandReturn = location => Model => Xclass => {
@@ -58,22 +53,11 @@ function getModelReqRes(f) {
 }
 
 //const getX = Model => (req, res) => m 
-function jsonRes(x) {
+function jsonRes(req, res, x) {
   res.status(200).json(x);
 }
-const getX = fThenJsonOnXbyYs("find")([])([]);
-/*const getX = Model => (req, res) => {
-  Model.find({}).then(users => res.status(200).json(users));
-}*/
-const getXbyY = fThenJsonOnXbyYs("findOne")([]);
-
-
-/*const getXbyY = yName => Model => (req, res) => {
-  let yVal = req.params[yName];
-  let query = QueryFactory(yName, yVal);
-  Model.findOne(query).then(x => res.status(200).json(x));
-}*/
-
+const getX = fThenGonModelbyYs("find")(jsonRes)([]);
+const getXbyY = fThenJsonOnXbyYs("findOne")(jsonRes);
 
 const createX = xName => Model => (req, res) => {
   let x = Model(req.body);
@@ -105,10 +89,9 @@ function updateXbyY(xName, yName) {
   }
 
 }
-const deleteXbyYs = xName => yNames => Model => (req, res) => {
-  let yVals = [];
-
-}
+const deleteXbyYs = fThenGonModelbyYs("findOneAndDelete")((req, res, x) =>
+  x != undefined ? `${x} was deleted` : `No such value was found`
+);
 function deleteXbyY(xName, yName) {
   return function(Model) {
     return function(req, res) {
