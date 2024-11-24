@@ -1,5 +1,4 @@
 "use strict";
-let privateKey = process.env.TOKEN_KEY;
 function parseJwt(token) {
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -24,4 +23,21 @@ function loginFunc(emailPassword, onSuccess, onError) {
   xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
   xhr.send(JSON.stringify(emailPassword));
 
+}
+
+function userFunc(userId, onSuccess, onError) {
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", "/user", true);
+  xhr.setRequestHeader('Content-Type', "application/json");
+  xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
+  xhr.send(JSON.stringify(userId));
+
+}
+
+const genericPost = route => (obj, onSuccess, onError) => {
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", route, true);
+  xhr.setRequestHeader('Content-Type', "application/json");
+  xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
+  xhr.send(JSON.stringify(obj));
 }

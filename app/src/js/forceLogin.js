@@ -9,7 +9,16 @@ let play = document.getElementById("play");
 let leaderboard = document.getElementById("leaderboard");
 
 let profile = document.getElementsByClassName("profile").item(0);
+function userInfoRequest() {
 
+  let user = parseJwt(sessionStorage.getItem("authToken"));
+  let id_req = {_id : user._id};
+  genericPost("/user")(id_req,saveUser, (x)=>console.log(x));
+
+}
+function saveUser(x){
+  sessionStorage.setItem("userInfo",x);
+}
 function refresher() {
   console.log("freshy");
   if (sessionStorage.getItem("authToken") === "false") {
@@ -17,9 +26,9 @@ function refresher() {
     let refresherId = document.getElementById("refresherId");
     refresherId.addEventListener("click", ((e) => refresher()));
   } else {
-    console.log(
-      parseJwt(sessionStorage.getItem("authToken")));
     profile.innerHTML = logOutHtml;
+    userInfoRequest();
+    console.log(sessionStorage.getItem("userInfo"));
     let logOutId = document.getElementById("logOutId");
     logOutId.addEventListener("click", ((e) => log_out()));
   }
@@ -38,7 +47,7 @@ let notLoggedInHtml = `
 	</div>
 `
 const log_out = (() => {
-  sessionStorage.setItem("loggedIn", "false");
+  sessionStorage.setItem("authToken", "false");
   refresher();
 });
 let logOutHtml = `
@@ -66,6 +75,8 @@ let ifLoggedIn = ((str) => {
 if (sessionStorage.getItem("authToken") === null || sessionStorage.getItem("authToken") === "false") {
   console.log("wat");
   sessionStorage.setItem("authToken", "false");
+} else {
+  console.log("logged in");
 }
 
 create.addEventListener("click", (e) => ifLoggedIn("create"));

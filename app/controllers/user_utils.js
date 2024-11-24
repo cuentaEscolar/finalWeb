@@ -13,6 +13,7 @@ const createUser = createX("User")(UserModel);
 const getUsers = getX(UserModel);
 const getUserBy = {
   uuid: getXbyY(["uuid"])(UserModel),
+  _id: getXbyY(["_id"])(UserModel),
   email: getXbyY(["email"])(UserModel),
 }
 const deleteUserBy = {
