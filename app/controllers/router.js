@@ -6,6 +6,7 @@ const path = require("path");
 const router = express.Router();
 const loginRouter = require("../routes/login");
 const signUpRouter = require("../routes/signUp");
+const playRouter = require("../routes/play");
 const homeRouter = require("./../routes/home");
 const createRouter = require("./../routes/create");
 const gamesRouter = require("./../routes/games");
@@ -45,8 +46,9 @@ router.use('/login', loginRouter);
 router.use('/signup', signUpRouter);
 router.use('/admin', adminRouter);
 router.use('/create', createRouter);
-router.use('/games', gamesRouter);
 router.use('/view', viewRouter);
+router.use('/games', gamesRouter);
+router.use('/play', playRouter);
 router.use('/leaderboard', leaderboardRouter);
 router.use('/stub', stubRouter);
 

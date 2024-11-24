@@ -57,7 +57,7 @@ function jsonRes(req, res, x) {
   res.status(200).json(x);
 }
 const getX = fThenGonModelbyYs("find")(jsonRes)([]);
-const getXbyY = fThenJsonOnXbyYs("findOne")(jsonRes);
+const getXbyY = fThenGonModelbyYs("findOne")(jsonRes);
 
 const createX = xName => Model => (req, res) => {
   let x = Model(req.body);
