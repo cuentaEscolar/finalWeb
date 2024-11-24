@@ -12,7 +12,7 @@ let profile = document.getElementsByClassName("profile").item(0);
 function userInfoRequest() {
 
   let user = parseJwt(sessionStorage.getItem("authToken"));
-  let id_req = { uuid: user.uuid};
+  let id_req = { uuid: user.uuid };
   console.log(`idreq ${JSON.stringify(id_req)}`);
   genericPost("/user")(id_req, saveUser, (x) => console.log(`failure`));
 
@@ -28,9 +28,9 @@ function refresher() {
     refresherId.addEventListener("click", ((e) => refresher()));
   } else {
     userInfoRequest();
-    let user = JSON.parse(sessionStorage.getItem("userInfo"));
-    profile.innerHTML = logOutHtml(user);
-    console.log(sessionStorage.getItem("userInfo"));
+    console.log(`userInfo: ${sessionStorage.getItem("userInfo")}`);
+    console.log(`userInfo: ${sessionStorage.getItem("userInfo")}`);
+    profile.innerHTML = logOutHtml();
     let logOutId = document.getElementById("logOutId");
     logOutId.addEventListener("click", ((e) => log_out()));
   }
@@ -50,10 +50,13 @@ let notLoggedInHtml = `
 `
 const log_out = (() => {
   sessionStorage.setItem("authToken", "false");
+  sessionStorage.setItem("userInfo", "false");
   refresher();
 });
-const logOutHtml = x =>  {
- let y =`
+const logOutHtml = () => {
+
+  let x = JSON.parse(sessionStorage.getItem("userInfo"));
+  let y = `
   <div class="container">
     <div class="row">
       <h2 id="h2Over">${x["username"]}</h2> 
