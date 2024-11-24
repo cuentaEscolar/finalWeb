@@ -11,7 +11,7 @@ function advancedQueryFactory(names, vals) {
   let str = "{";
   let len = names.length;
   let subStr = [];
-  for (let i= 0; i< len; i++) {
+  for (let i = 0; i < len; i++) {
     subStr.push(` "${names[i]}" :"${vals[i]}"`);
   }
   str += subStr.join(",");
@@ -19,14 +19,21 @@ function advancedQueryFactory(names, vals) {
   console.log(str)
   return JSON.parse(str);
 }
-
-const fThenJsonOnXbyYs = f => xName => yNames => Model => (req, res) => {
+const queryFromReqRes = yNames => (req, res) => {
   let yVals = [];
   console.log(`yNames ${yNames}`);
   yNames.forEach(element => {
     yVals.push(req.params[element]);
   });
-  let query = advancedQueryFactory(yNames, yVals);
+  return advancedQueryFactory(yNames, yVals);
+}
+//It should be noted that g :: (req, res, ...theArgs) => IO
+const fThenGonModelbyYs = f => yNames => Model => g => (req, res) => {
+
+}
+
+const fThenJsonOnXbyYs = f => xName => yNames => Model => (req, res) => {
+  let query = queryFromReqRes(yNames)(req, res);
   console.log(query);
   Model[f](query).then(users => res.status(200).json(users));
 }
