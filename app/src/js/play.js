@@ -39,7 +39,7 @@ function create_players(playerNo) {
 		str += `<div class="col-md-${Math.floor(12 / playerNo)}">
 				<h5>Equipo${index + 1}</h5>
 				<div class=""> Scores </div>
-				<div class="box"> </div>
+				<div class="box" id="score_${index}">0</div>
 			</div>`
 	}
 	str += `</div>`;
