@@ -10,7 +10,7 @@ router.route("/")
 	.get((req, res) =>
 		res.sendFile(path.join(__dirname, "../", "views", "game.html"))
 	)
-	.put((req, res) => console.log(""));
+	.put((req, res) => game_utils.createGame(req,res)); 
 router.route("/:email/:title")
 	.get((req, res) => console.log("uoe"));
 

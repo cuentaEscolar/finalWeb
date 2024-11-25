@@ -16,6 +16,12 @@ class Game {
   static getFields() {
     return ["rows", "cols", "title", "topics", "questions", "answers", "scores", "uuid", "creatorUuid"];
   }
+  static generateFromObject(obj){
+    let fields = Game.getFields();
+    obj = utils.fieldCleanUp(fields, obj);
+    let funkyGame = new Game(obj["rows"], obj["cols"],obj["title"],obj["topics"],obj["questions"],obj["answers"], obj["scores"]);
+    return funkyGame;
+  }
   static guestDefault() {
     rows = 3;
     rows = 1;

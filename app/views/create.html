@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Create Jeopardy Game</title>
 
+  <script src="../controllers/ajax_handler.js"> </script>
   <script src="../src/js/forceAuth.js"></script>
   <script src="../src/js/table_utils.js"></script>
   <!-- Bootstrap CSS -->
@@ -33,8 +34,8 @@
               <li class="nav-item"><a class="nav-link" href="./home">My Account</a></li>
               <li class="nav-item"><a class="nav-link" href="./home">Home</a></li>
               <li class="nav-item"><a class="nav-link active" href="#">Create</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">View</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Play</a></li>
+              <li class="nav-item"><a class="nav-link" href="./view#">View</a></li>
+              <li class="nav-item"><a class="nav-link" href="./play#">Play</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Leaderboard</a></li>
             </ul>
           </div>
@@ -138,9 +139,9 @@
             <div class="mt-4 d-flex justify-content-center gap-2">
               <a id="jsonGenerator" class="btn btn-primary disabled" href="#" role="button" data-toggle="modal"
                 data-target="#gameSummaryModal">Generar JSON</a>
-              <button class="btn btn-warning">Download</button>
-              <button class="btn btn-warning">Save To Account</button>
-              <button class="btn btn-danger">Clear All</button>
+              <a class="btn btn-warning disabled">Download</a>
+              <a class="btn btn-warning disabled" id="accountSave">Save To Account</a>
+              <a class="btn btn-danger disabled" id="clearAll">Clear All</a>
             </div>
           </div>
         </div>

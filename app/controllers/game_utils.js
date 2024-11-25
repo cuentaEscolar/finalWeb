@@ -22,8 +22,12 @@ const updateGameBy = {
   id: CRUD_utils.updateXbyY("game", "id")(GameModel)(GameClass.getFields()),
   name: CRUD_utils.updateXbyY("game", "name")(GameModel)(GameClass.getFields()),
 };
-
+const createGame = (req, res) => {
+  let obj = req.body;
+  GameModel.save(GameClass.generateFromObject(obj));
+}
 module.exports = {
+  createGame,
   getGames,
   getGameBy,
   getGamesByName,
