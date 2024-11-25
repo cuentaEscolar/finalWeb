@@ -69,7 +69,18 @@ const logOutHtml = () => {
     <div class="row">
     </div>
     <div class="row">
-      <a href="#"  class="btn btn-primary" id="logOutId">log out</a>
+      <a href="#"  class="btn btn-danger" id="logOutId">log out</a>
+      <div class="box">
+      <a href="#"  class="btn btn-primary" id="updateImg">updateImg</a>
+      <div class="input-group mb-1">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">img:/</span>
+      </div>
+       <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+      </div>
+</div>
+
+</div>
     </div>
 	</div>
 `
