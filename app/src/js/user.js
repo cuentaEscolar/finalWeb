@@ -16,6 +16,7 @@ class User {
   static generateGuest() {
     let guest = new User("anonymous", "guest@silly-cat.fake", "not needed", "GUEST");
     guest.img_ = "https://static.wikia.nocookie.net/silly-cat/images/2/2c/Why_is_blud_flabbergasted.png/";
+    guest.uuid = "guest";
     return guest;
   }
 

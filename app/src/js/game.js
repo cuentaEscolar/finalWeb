@@ -19,15 +19,18 @@ class Game {
   static guestDefault() {
     rows = 3;
     rows = 1;
-    this.cols = 0;
-    this.title = "";
+    this.cols = 1;
+    this.title = "Miau Miau";
     this.topics = [];
     this.questions = [];
     this.answers = [];
     this.scores = [];
     this.uuid = generateUUID();
-    this.creatorUuid = -1;
+    this.creatorUuid = "guest";
   }
+  static catJson(){
+    return 0;
+  } 
 
 }
 module.exports = { Game };
