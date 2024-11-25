@@ -11,7 +11,7 @@ userArr = loadXandReturn("./../data/users.json")(UserModel)(UserClass);
 userArr.push(UserModel(UserClass.generateGuest()));
 console.log(userArr);
 
-const createUser = createX("User")(UserModel);
+const createUser = createX(UserClass)(UserModel);
 const getUsers = getX(UserModel);
 const getUserBy = {
   uuid: getXbyY(["uuid"])(UserModel),

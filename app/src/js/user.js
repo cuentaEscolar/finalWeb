@@ -5,6 +5,7 @@ const generateUUID = utils.generateUUID;
 
 class User {
   constructor(username, email, password, role) {
+    console.log(`User gen ${username}, ${email}, ${password}, ${role}`)
     this.salt = bcrypt.genSaltSync(10);
     this.username_ = username;
     this.email_ = email;//bcrypt.hashSync(email, this.salt);

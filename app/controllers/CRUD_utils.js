@@ -67,11 +67,13 @@ function jsonRes(req, res, x) {
 const getX = fThenGonModelbyYs("find")(jsonRes)([]);
 const getXbyY = fThenGonModelbyYs("findOne")(jsonRes);
 
-const createX = xName => Model => (req, res) => {
-	let x = Model(req.body);
+const createX = xClass => Model => (req, res) => {
+  let x_ = xClass.generateFromObject(req.body);
+  console.log(JSON.stringify(x_));
+	let x = Model(x_);
 	x.save().then((x) => {
 		res.set("Content-Type", "text/plain; charset=utf-8");
-		res.send(`${xName} ${x} was created!`);
+		res.send(`${xClass} ${x} was created!`);
 	});
 }
 
