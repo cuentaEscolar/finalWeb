@@ -8,7 +8,7 @@ let game = {
   questions: [],
   answers: [],
   scores: [],
-  creatorUuid: "guest" ,
+  creatorUuid: "guest",
 }
 
 const getY = (x) => sessionStorage.getItem(x);
@@ -106,7 +106,9 @@ const getQuestion = (
   (topic_i, question_i) =>
     game.questions[topic_i][question_i]
 );
-const updateGameAt = at => (topic_i, question_i) => newVal => game[at][topic_i][question_i] = newVal;
+const updateGameAt = at => (topic_i, question_i) => newVal => {
+  game[at][topic_i][question_i] = newVal;
+}
 const updateQuestion = updateGameAt("questions");/*(
   (topic_i, question_i) =>
   ((newVal) =>
@@ -140,7 +142,7 @@ btnGameBoard.onclick = (generateGameBoard);
 btnClearAll.onclick = (generateGameBoard);
 
 btnSaveToAccount.addEventListener("click", () => {
-  
+
   let user = JSON.parse(sessionStorage.getItem("userInfo"));
   game.creatorUuid = user.uuid;
   console.log("pressed :c");
@@ -233,7 +235,6 @@ btnJsonStr.onclick = generateJson;
 
 // completa la función
 function generateJson(event) {
-  console.log("i");
 
   theme.setAttribute("hidden", "");
   question.setAttribute("hidden", "");
@@ -251,8 +252,8 @@ function curryPosition(topic_i, question_i) {
   if (topic_i === -1 || question_i === -1) return ((element) => (1));
   function saveTopic(event) {
     cell = mainTable.rows[topic_i].cells[question_i];
-    game.topics[topic_i] = theme.getElementsByTagName("input")[0].value;
-    cell.getElementsByTagName("a")[0].textContent = game.topics[topic_i];
+    game.topics[question_i - 1] = theme.getElementsByTagName("input")[0].value;
+    cell.getElementsByTagName("a")[0].textContent = game.topics[question_i - 1];
   }
   function saveQuestion(event) {
     cell = mainTable.rows[topic_i].cells[question_i];
