@@ -2,6 +2,14 @@
 let table = document.getElementById("table"); 
 let game =  JSON.parse(sessionStorage.getItem("latestGame"));
 let loadBtn = document.getElementById("loadBtn");
+let playBtn = document.getElementById("playBtn");
+
+let answerBox = document.getElementById("answer");
+let questionBox = document.getElementById("question");
+
+let answerVal = document.getElementById("answerVal");
+let questionVal = document.getElementById("questionVal");
+
 console.log(game);
 
 //table.innerHTML = "";
@@ -17,8 +25,15 @@ function loadTable(x){
   `
 
   table.innerHTML = generatedTable;
+
 }
-function runGame(){
+function runGame(g){
+  let turnNo = 0;
+  let state = 0;
+	let players = document.getElementById("playerNo").value;
+	console.log(players);
+console.log("running");
 
 }
 loadBtn.addEventListener("click", ()=> loadTable(game));
+playBtn.addEventListener("click", ()=> runGame(game));

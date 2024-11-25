@@ -74,8 +74,8 @@
                     # de Jugadores
                   </h4>
                 </label>
-                <input type="number" class="form-control" id="playerNo">
-                <a class="btn btn-success disabled" id="boardGenerator">Empieza a jugar !!!!</a>
+                <input type="number" class="form-control" id="playerNo" min="1", max="10">
+                <a class="btn btn-success " id="playBtn">Empieza a jugar !!!!</a>
               </div>
 
             </form>
@@ -98,37 +98,23 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content" id="main">
         <div class="modal-header">
-          <h2 class="modal-title">Jeopardy Designer</h2>
+          <h2 class="modal-title theme">Tema</h2>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
           <div class="container">
-            <div class="question">
+            <div id="question">
               <div class="form-group">
                 <label for="">Pregunta: </label>
-                <textarea class="form-control" name="" id="" rows="3" placeholder="Escribe tu pregunta"></textarea>
+                <div class="box form-control" name="" id="questionVal" rows="3" placeholder="Escribe tu pregunta"></div>
               </div>
             </div>
-            <div class="answer">
+            <div id="answer">
               <div class="form-group">
                 <label for="">Respuesta: </label>
-                <textarea class="form-control" name="" id="" rows="3" placeholder="Escribe su Respuesta"></textarea>
-              </div>
-            </div>
-            <div class="theme">
-              <div class="form-group">
-                <label for="">
-                  <h2 class="h4" id="h2Over">Tema</h2>
-                </label>
-                <input type="text" class="form-control" placeholder="temática">
-              </div>
-            </div>
-            <div class="json">
-              <div class="form-group">
-                <label for="">JSON</label>
-                <textarea class="form-control" name="" id="textJson" rows="3" disabled="true">text</textarea>
+                <div class="form-control box" name="" id="answerVal" rows="3" placeholder="Escribe su Respuesta"></div>
               </div>
             </div>
 
@@ -142,10 +128,24 @@
     </div>
   </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Custom JS -->
   <script src="../src/js/play.js"></script>
+  <!-- Bootstrap JS -->
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
