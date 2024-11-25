@@ -1,7 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY, dropModel } = require("./CRUD_utils.js");
-const UserModel = require('../models/user')
+const UserModel = require('../models/user');
+console.log(`User model ${UserModel}`);
 const UserClass = require("./../src/js/user.js");
 const User = require("../models/user");
 

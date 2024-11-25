@@ -2,9 +2,11 @@
 const express = require('express');
 const path = require("path");
 const user_utils = require("../controllers/user_utils");
+const game_utils = require("../controllers/game_utils");
 const { userInfo } = require('os');
 const router = express.Router();
 
+router.route("/games").get((req, res) => game_utils.getGames(req, res));
 router.route("/users").get((req, res) => user_utils.getUsers(req, res));
 router.route("/users/uuid/:uuid")
   .get((req, res) => user_utils.getUserBy["uuid"](req, res))

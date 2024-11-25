@@ -3,6 +3,7 @@ const path = require("path");
 const CRUD_utils = require("./CRUD_utils.js");
 const { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY, dropModel } = require("./CRUD_utils.js");
 const GameModel = require("../models/game");
+console.log(`GameModel ${GameModel}`);
 const GameClass = require("./../src/js/game.js");
 const Game = require("../models/game");
 
@@ -24,7 +25,8 @@ const updateGameBy = {
 };
 const createGame = (req, res) => {
   let obj = req.body;
-  GameModel.save(GameClass.generateFromObject(obj));
+  let Game = new GameModel(GameClass.generateFromObject(obj))
+  Game.save();
 }
 module.exports = {
   createGame,

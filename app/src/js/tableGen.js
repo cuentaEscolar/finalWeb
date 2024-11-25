@@ -134,12 +134,15 @@ title.addEventListener("keyup", enableDisableButtons);
 */
 function addAuthorUuid(x){
 	x["creatorUuid"] = sessionStorage.getItem("userInfo")["uuid"];
+  console.log(JSON.stringify(x));
+  return x;
 }
 btnGameBoard.onclick = (generateGameBoard);
 btnClearAll.onclick = (generateGameBoard);
 
 btnSaveToAccount.addEventListener("click", ()=> {
 	console.log("pressed :c");
+  console.log(addAuthorUuid(game));
 	genericCRUD("PUT")("/games")(
 	addAuthorUuid(game),
 	(x)=>console.log("success"),
