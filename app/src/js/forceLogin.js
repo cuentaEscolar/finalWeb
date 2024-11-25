@@ -12,14 +12,24 @@ let profile = document.getElementsByClassName("profile").item(0);
 function userInfoRequest() {
 
   let user = parseJwt(sessionStorage.getItem("authToken"));
-  let id_req = { uuid: user.uuid };
+  let id_req = { _id: user._id};
   console.log(`idreq ${JSON.stringify(id_req)}`);
-  genericCRUD("get")(`/user/uuid/${user.uuid}`)(id_req, saveUser, (x) => console.log(`failure ${x}`));
+  genericCRUD("get")(`/user/_id/${user._id}`)(id_req, saveUser, (x) => console.log(`failure ${x}`));
 
 }
 function saveUser(x) {
   x = JSON.parse(x);
   sessionStorage.setItem("userInfo", x);
+}
+function post_update_img() {
+  let new_img = document.getElementById("new_img");
+  let new_user = JSON.parse(sessionStorage.getItem("userInfo"));
+  new_user.img = new_img.value;
+  genericCRUD("POST")(`user/_id/${new_user._id}`)(new_user, saveUser, (x) => console.log("failure"));
+  console.log(new_img.value);
+  console.log(new_user);
+  //refresher();
+
 }
 function refresher() {
   console.log("freshy");
@@ -32,8 +42,11 @@ function refresher() {
     console.log(`userInfo: ${sessionStorage.getItem("userInfo")}`);
     console.log(`userInfo: ${sessionStorage.getItem("userInfo")}`);
     profile.innerHTML = logOutHtml();
+
     let logOutId = document.getElementById("logOutId");
+    let updateImg = document.getElementById("updateImg");
     logOutId.addEventListener("click", ((e) => log_out()));
+    updateImg.addEventListener("click", ((e) => post_update_img()));
   }
 }
 let notLoggedInHtml = `
@@ -76,7 +89,7 @@ const logOutHtml = () => {
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon3">img:/</span>
       </div>
-       <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+       <input type="text" class="form-control" id="new_img" aria-describedby="basic-addon3">
       </div>
 </div>
 

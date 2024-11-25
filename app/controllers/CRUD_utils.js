@@ -27,8 +27,6 @@ const queryFromReqRes = yNames => (req, res) => {
 }
 //It should be noted that g :: (req, res, ...theArgs) => IO
 const fThenGonModelbyYs = f => g => yNames => Model => (req, res) => {
-	console.log("CURD HERE");
-	console.log(Model);
 	let query = queryFromReqRes(yNames)(req, res);
 	Model[f](query).then(x => g(req, res, x));
 }
