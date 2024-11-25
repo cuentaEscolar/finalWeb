@@ -25,22 +25,22 @@ let gameSchema = mongoose.Schema({
   },
 
   topics: {
-    type: String,
+    type: [String],
     require: true
   },
 
   questions: {
-    type: String,
+    type: [[String]],
     require: true
   },
 
   answers: {
-    type: String,
+    type: [[String]],
     require: true
   },
 
   scores: {
-    type: Number,
+    type: [[Number]],
     require: true
   },
 

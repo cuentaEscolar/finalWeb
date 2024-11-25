@@ -25,6 +25,7 @@ const updateGameBy = {
 };
 const createGame = (req, res) => {
   let obj = req.body;
+  console.log(`the thing we got ${obj}`);
   let Game = new GameModel(GameClass.generateFromObject(obj))
   Game.save();
 }
