@@ -1,12 +1,11 @@
-function create_thead_full(cols, titles){
+function create_thead_full(cols, titles) {
   let str = `<thead>
                   <tr>
                     <th>Valores </th>
    `;
   for (let index = 0; index < cols; index++) {
     str += `
-                    <th><a href="#" data-toggle="modal" data-target="#gameSummaryModal">
-                    ${titles[index]}</a></th>
+                    <th><a href="#" data-toggle="modal" data-target="#gameSummaryModal">${titles[index]}</a></th>
     `;
   }
 
@@ -34,7 +33,7 @@ function create_thead(cols) {
   `
   return str;
 }
-function create_td_topic(rows, cols, topic ){
+function create_td_topic(rows, cols, topic) {
   let s = `
                     <td><a href="#" data-toggle="modal" data-target="#gameSummaryModal">${topic} ${cols}-${(rows + 1) * 100}</a></td>
 `
@@ -47,7 +46,7 @@ function create_td(rows, cols) {
 `
   return s;
 }
-function create_tbody_full(rows, cols, topics, ){
+function create_tbody_full(rows, cols, topics,) {
   let str = `
                 <tbody>
                 `
@@ -57,7 +56,7 @@ function create_tbody_full(rows, cols, topics, ){
                     <td scope="row">${(index + 1) * 100}</td>
     `
     for (let jndex = 0; jndex < cols; jndex++) {
-      str += create_td_topic(index, jndex, topics[jndex] );
+      str += create_td_topic(index, jndex, topics[jndex]);
     }
     str += `
                   </tr>
