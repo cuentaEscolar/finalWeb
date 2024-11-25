@@ -6,61 +6,59 @@ const jwt = require('jsonwebtoken');
 let mongoDB = 'mongodb://localhost:27017/GamesDB';
 let privateKey = process.env.TOKEN_KEY;
 
-mongoose.connect(mongoDB, { useNewUrlParser: true });
 
 let gameSchema = mongoose.Schema({
 
-	rows: {
-		type: String,
-		require: true
-	},
+  rows: {
+    type: String,
+    require: true
+  },
 
-	cols: {
-		type: String,
-		require: true
-	},
+  cols: {
+    type: String,
+    require: true
+  },
 
-	title: {
-		type: String,
-		require: true
-	},
+  title: {
+    type: String,
+    require: true
+  },
 
-	topics: {
-		type: String,
-		require: true
-	},
+  topics: {
+    type: String,
+    require: true
+  },
 
-	questions: {
-		type: String,
-		require: true
-	},
+  questions: {
+    type: String,
+    require: true
+  },
 
-	answers: {
-		type: String,
-		require: true
-	},
+  answers: {
+    type: String,
+    require: true
+  },
 
-	scores: {
-		type: Number,
-		require: true
-	},
+  scores: {
+    type: Number,
+    require: true
+  },
 
-	uuid: {
-		type: String,
-		require: true
-	},
+  uuid: {
+    type: String,
+    require: true
+  },
 
-	creatorUuid: {
-		type: String,
-		require: true
-	},
+  creatorUuid: {
+    type: String,
+    require: true
+  },
 
 });
 
 gameSchema.pre('save', function(next) {
-	let user = this;
-	user.password = bcrypt.hashSync(user.password, 10);
-	next();
+  let user = this;
+  next();
 })
 
 

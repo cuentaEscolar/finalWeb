@@ -25,7 +25,7 @@ const updateGameBy = {
 
 module.exports = {
   getGames,
-  getGamesById,
+  getGameBy,
   getGamesByName,
   deleteGameById,
   updateGameBy,

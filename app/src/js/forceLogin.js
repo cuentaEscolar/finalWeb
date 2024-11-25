@@ -14,10 +14,11 @@ function userInfoRequest() {
   let user = parseJwt(sessionStorage.getItem("authToken"));
   let id_req = { uuid: user.uuid };
   console.log(`idreq ${JSON.stringify(id_req)}`);
-  genericPost("/user")(id_req, saveUser, (x) => console.log(`failure`));
+  genericCRUD("get")(`/user/uuid/${user.uuid}`)(id_req, saveUser, (x) => console.log(`failure ${x}`));
 
 }
 function saveUser(x) {
+  x = JSON.parse(x);
   sessionStorage.setItem("userInfo", x);
 }
 function refresher() {

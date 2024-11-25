@@ -28,9 +28,9 @@ class Game {
     this.uuid = generateUUID();
     this.creatorUuid = "guest";
   }
-  static catJson(){
+  static catJson() {
     return 0;
-  } 
+  }
 
 }
-module.exports = { Game };
+module.exports = Game;

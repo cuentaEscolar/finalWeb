@@ -16,7 +16,6 @@ function advancedQueryFactory(names, vals) {
   }
   str += subStr.join(",");
   str += "}";
-  console.log(str)
   return JSON.parse(str);
 }
 const queryFromReqRes = yNames => (req, res) => {
@@ -24,14 +23,11 @@ const queryFromReqRes = yNames => (req, res) => {
   yNames.forEach(element => {
     yVals.push(req.params[element]);
   });
-  console.log(`yNames ${yNames}`);
-  console.log(`yVals ${yVals}`);
   return advancedQueryFactory(yNames, yVals);
 }
 //It should be noted that g :: (req, res, ...theArgs) => IO
 const fThenGonModelbyYs = f => g => yNames => Model => (req, res) => {
   let query = queryFromReqRes(yNames)(req, res);
-  console.log(`query ${JSON.stringify(query)}`);
   Model[f](query).then(x => g(req, res, x));
 }
 
@@ -63,7 +59,8 @@ function getModelReqRes(f) {
 
 //const getX = Model => (req, res) => m 
 function jsonRes(req, res, x) {
-  res.status(200).json(x);
+//res.status(200).json(x);
+  res.send([JSON.stringify(x)]);
 }
 const getX = fThenGonModelbyYs("find")(jsonRes)([]);
 const getXbyY = fThenGonModelbyYs("findOne")(jsonRes);
@@ -104,7 +101,6 @@ const deleteXbyYs = fThenGonModelbyYs("findOneAndDelete")((req, res, x) =>
 function deleteXbyY(xName, yName) {
   return function(Model) {
     return function(req, res) {
-      console.log(req);
       let yVal = req.params[yName];
       let query = QueryFactory(yName, yVal);
       Model.findOneAndDelete(query).then(X => {

@@ -34,10 +34,13 @@ function userFunc(userId, onSuccess, onError) {
 
 }
 
-const genericPost = route => (obj, onSuccess, onError) => {
+const genericCRUD = CRUD => route => (obj, onSuccess, onError) => {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", route, true);
+  console.log(`ajax route ${route}`);
+  console.log(`To Send ${JSON.stringify(obj)}`);
+  xhr.open(CRUD, route, true);
   xhr.setRequestHeader('Content-Type', "application/json");
   xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
-  xhr.send(JSON.stringify(obj));
+  if (CRUD !== "GET") xhr.send(JSON.stringify(obj));
 }
+const genericPost = genericCRUD("POST");
