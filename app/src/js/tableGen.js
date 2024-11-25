@@ -8,7 +8,11 @@ let game = {
   questions: [],
   answers: [],
   scores: [],
+  creatorUuid: "guest" ,
 }
+
+const getY = (x) => sessionStorage.getItem(x);
+
 // Aquí obten el input de titulo
 let title = document.getElementById("titleInput");
 // Aquí busca y guarda el elemento del botón de Generar Tablero
@@ -132,23 +136,20 @@ title.addEventListener("keyup", enableDisableButtons);
 /*
 *  Aquí añadele al botón de btnGameBoard un handler del evento click a la función generateGameBoard
 */
-function addAuthorUuid(x) {
-  x["creatorUuid"] = sessionStorage.getItem("userInfo")["uuid"];
-  console.log(JSON.stringify(x));
-  return x;
-}
 btnGameBoard.onclick = (generateGameBoard);
 btnClearAll.onclick = (generateGameBoard);
 
 btnSaveToAccount.addEventListener("click", () => {
+  
+  let user = JSON.parse(sessionStorage.getItem("userInfo"));
+  game.creatorUuid = user.uuid;
   console.log("pressed :c");
-  console.log(addAuthorUuid(game));
   genericCRUD("PUT")("/games")(
-    addAuthorUuid(game),
+    (game),
     (x) => console.log("success"),
     (x) => console.log("failure")
   );
-  sessionStorage.setItem("latestGame", JSON.stringify(addAuthorUuid(game)));
+  sessionStorage.setItem("latestGame", JSON.stringify((game)));
 }
 );
 

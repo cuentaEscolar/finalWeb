@@ -19,6 +19,7 @@ class Game {
   static generateFromObject(obj) {
     let fields = Game.getFields();
     obj = utils.fieldCleanUp(fields, obj);
+    console.log(`creatorUuid : ${this.creatorUuid}`);
     let funkyGame = new Game(obj["rows"], obj["cols"], obj["title"], obj["topics"], obj["questions"], obj["answers"], obj["scores"], obj["creatorUuid"]);
     return funkyGame;
   }
