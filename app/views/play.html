@@ -25,11 +25,11 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
-              <li class="nav-item"><a class="nav-link" href="./home.html">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="./create.html">Create</a></li>
-              <li class="nav-item"><a class="nav-link active" href="./play.html">Play</a></li>
-              <li class="nav-item"><a class="nav-link" href="./view.html">View</a></li>
-              <li class="nav-item"><a class="nav-link" href="./import.html">Import</a></li>
+              <li class="nav-item"><a class="nav-link" href="./home">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="./create">Create</a></li>
+              <li class="nav-item"><a class="nav-link active" href="./play">Play</a></li>
+              <li class="nav-item"><a class="nav-link" href="./view">View</a></li>
+              <li class="nav-item"><a class="nav-link" href="./import">Import</a></li>
             </ul>
           </div>
         </div>
@@ -37,8 +37,8 @@
     </header>
 
     <div class="row">
-    <!-- Game Board -->
-        
+      <!-- Game Board -->
+
       <div class="col-md-3 mb-4">
         <div class="card bg-secondary text-light" id="aside">
           <div class="card-body" id="aside">
@@ -49,7 +49,7 @@
                 <a id="loadBtn" class="btn enabled btn-warning"> carga el mas reciente</a>
                 <li>Carga de tus juegos por titulo</li>
                 <form>
-                  
+
                 </form>
               </ul>
             </div>
@@ -67,6 +67,18 @@
       <div class="col-md-3 mb-4">
         <div class="card bg-secondary text-light" id="aside">
           <div class="card-body profile" id="aside">
+            <form>
+                <div class="mb-3">
+                  <label for="gameTitle" class="form-label">
+                    <h4 id="h2Over">
+                    # de Jugadores
+                    </h4>
+                  </label>
+                  <input type="number" class="form-control" id="playerNo">
+                <a class="btn btn-success disabled" id="boardGenerator">Empieza a jugar !!!!</a>
+                </div>
+
+            </form>
           </div>
         </div>
       </div>
