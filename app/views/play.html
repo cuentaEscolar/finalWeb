@@ -18,8 +18,8 @@
     <header class="mb-4">
       <h1 class="text-center py-3">Play Jeopardy</h1>
       <!-- Navigation -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
-        <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded" id="navbar">
+        <div class="container-fluid" id="navbar">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -60,7 +60,7 @@
         <!-- Dynamically Generated Game Board -->
         <div id="game-board" class="col-12 text-center">
           <!-- JavaScript will populate this area -->
-          <div id="table" class="alert alert-info">Game board will appear here.</div>
+          <div id="table" class="box">Game board will appear here.</div>
         </div>
       </div>
 
@@ -68,15 +68,15 @@
         <div class="card bg-secondary text-light" id="aside">
           <div class="card-body profile" id="aside">
             <form>
-                <div class="mb-3">
-                  <label for="gameTitle" class="form-label">
-                    <h4 id="h2Over">
+              <div class="mb-3">
+                <label for="gameTitle" class="form-label">
+                  <h4 id="h2Over">
                     # de Jugadores
-                    </h4>
-                  </label>
-                  <input type="number" class="form-control" id="playerNo">
+                  </h4>
+                </label>
+                <input type="number" class="form-control" id="playerNo">
                 <a class="btn btn-success disabled" id="boardGenerator">Empieza a jugar !!!!</a>
-                </div>
+              </div>
 
             </form>
           </div>
@@ -89,6 +89,57 @@
     <footer class="text-center py-3 bg-primary text-light rounded mt-4">
       &copy; 2024 Jeopardy Game. All Rights Reserved.
     </footer>
+    
+  </div>
+    <!-- Modals -->
+    
+  <div class="modal fade" id="gameSummaryModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" id="main">
+        <div class="modal-header">
+          <h2 class="modal-title">Jeopardy Designer</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="question">
+              <div class="form-group">
+                <label for="">Pregunta: </label>
+                <textarea class="form-control" name="" id="" rows="3" placeholder="Escribe tu pregunta"></textarea>
+              </div>
+            </div>
+            <div class="answer">
+              <div class="form-group">
+                <label for="">Respuesta: </label>
+                <textarea class="form-control" name="" id="" rows="3" placeholder="Escribe su Respuesta"></textarea>
+              </div>
+            </div>
+            <div class="theme">
+              <div class="form-group">
+                <label for="">
+                  <h2 class="h4" id="h2Over">Tema</h2>
+                </label>
+                <input type="text" class="form-control" placeholder="temática">
+              </div>
+            </div>
+            <div class="json">
+              <div class="form-group">
+                <label for="">JSON</label>
+                <textarea class="form-control" name="" id="textJson" rows="3" disabled="true">text</textarea>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="btnSave" type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+          <button id="btnClose" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Bootstrap JS -->

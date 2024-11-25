@@ -5,7 +5,8 @@ function create_thead_full(cols, titles){
    `;
   for (let index = 0; index < cols; index++) {
     str += `
-                    <th><a href="#" data-toggle="modal" data-target="#gameSummaryModal">${titles[index]}</a></th>
+                    <th><a href="#" data-toggle="modal" data-target="#gameSummaryModal">
+                    ${titles[index]}</a></th>
     `;
   }
 
