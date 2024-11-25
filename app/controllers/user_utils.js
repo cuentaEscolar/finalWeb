@@ -7,6 +7,7 @@ const User = require("../models/user");
 
 let userArr = [];
 userArr = loadXandReturn("./../data/users.json")(UserModel)(UserClass);
+userArr.push(UserModel(UserClass.generateGuest()));
 console.log(userArr);
 
 const createUser = createX("User")(UserModel);
@@ -28,7 +29,7 @@ const dropUsers = dropModel(UserModel);
 const getFullInfo = (req, res) => {
   let uuid = req.body.uuid;
   req.params["uuid"] = uuid;
-  return getUserBy["uuid"](req,res);
+  return getUserBy["uuid"](req, res);
 }
 function login(req, res) {
   let email = req.body.email;

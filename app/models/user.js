@@ -12,7 +12,8 @@ mongoose.connect(mongoDB, { useNewUrlParser: true });
 let userSchema = mongoose.Schema({
   username: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   email: {
     type: String,
@@ -40,10 +41,9 @@ let userSchema = mongoose.Schema({
 
 userSchema.pre('save', function(next) {
   let user = this;
-  console.log(user);
-  //  user.password = bcrypt.hashSync(user.password, 10);
+  if (!user.isNew) return next();
   next();
-})
+});
 
 userSchema.methods.generateToken = function(password) {
   let user = this;

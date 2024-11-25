@@ -40,7 +40,14 @@ const loadXandReturn = location => Model => Xclass => {
   let toRet = [];
   rawXs.forEach(element => {
     let X = Xclass.generateFromObject(element);
-    Model(X).save().then((doc) => console.log(doc));
+    let hadError = false;
+    Model(X).save(
+    ).then((doc) => console.log(doc)).catch((err) => {
+      console.log(err);
+      hadError = true;
+      return;
+    });
+    if (hadError) return;
     toRet.push(X);
   });
   return toRet;

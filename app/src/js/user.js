@@ -14,7 +14,9 @@ class User {
     this.img = "https://static.wikia.nocookie.net/silly-cat/images/4/4f/Wire_Cat.png"
   }
   static generateGuest() {
-    return new User("anonymous", "none", "not needed", "GUEST");
+    let guest = new User("anonymous", "guest@silly-cat.fake", "not needed", "GUEST");
+    guest.img_ = "https://static.wikia.nocookie.net/silly-cat/images/2/2c/Why_is_blud_flabbergasted.png/";
+    return guest;
   }
 
   static generateFromJson(obj) {
