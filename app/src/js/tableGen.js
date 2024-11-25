@@ -132,9 +132,21 @@ title.addEventListener("keyup", enableDisableButtons);
 /*
 *  Aquí añadele al botón de btnGameBoard un handler del evento click a la función generateGameBoard
 */
+function addAuthorUuid(x){
+	x["creatorUuid"] = sessionStorage.getItem("userInfo")["uuid"];
+}
 btnGameBoard.onclick = (generateGameBoard);
 btnClearAll.onclick = (generateGameBoard);
-btnSaveToAccount.onclick = genericCRUD();
+
+btnSaveToAccount.addEventListener("click", ()=> {
+	console.log("pressed :c");
+	genericCRUD("PUT")("/games")(
+	addAuthorUuid(game),
+	(x)=>console.log("success"),
+	(x)=>console.log("failure")
+	);
+	}
+);
 
 /* la función generar tablero:
 *  guarda en el objeto game los valores de titulo, row y cols
