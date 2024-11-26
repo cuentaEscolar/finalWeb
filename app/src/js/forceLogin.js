@@ -9,6 +9,7 @@ let play = document.getElementById("play");
 let leaderboard = document.getElementById("leaderboard");
 
 let profile = document.getElementsByClassName("profile").item(0);
+
 function userInfoRequest() {
   console.log("userInfoRequest");
   console.log(`authToken, ${JSON.stringify(parseJwt(sessionStorage.getItem("authToken")))}`);
@@ -18,13 +19,14 @@ function userInfoRequest() {
   genericCRUD("get")(`/user/_id/${user._id}`)(id_req, saveUser, (x) => console.log(`failure ${x}`));
 
 }
+
 function saveUser(x) {
   console.log(`saveUser ${x}`);
   sessionStorage.setItem("userInfo", x);
 }
 function post_update_img() {
   let new_img = document.getElementById("new_img");
-  if (sessionStorage.getItem("userInfo") === "false"){
+  if (sessionStorage.getItem("userInfo") === "false") {
     userInfoRequest();
   }
   let new_user = JSON.parse(sessionStorage.getItem("userInfo"));
@@ -48,7 +50,7 @@ function refresher() {
       userInfoRequest();
     }
     console.log(`userInfo: ${sessionStorage.getItem("userInfo")}`);
-    if (sessionStorage.getItem("userInfo")==="false")userInfoRequest();
+    if (sessionStorage.getItem("userInfo") === "false") userInfoRequest();
     profile.innerHTML = logOutHtml();
 
     let logOutId = document.getElementById("logOutId");
@@ -75,21 +77,22 @@ const log_out = (() => {
   sessionStorage.setItem("userInfo", "false");
   refresher();
 });
+
 const logOutHtml = () => {
 
   let x = JSON.parse(sessionStorage.getItem("userInfo"));
   if (x === false || x === "false") userInfoRequest();
-  if (typeof(x) === Array){
+  if (typeof (x) === Array) {
     x = x[0];
     x = JSON.parse(x);
     console.log("arr");
   }
-  if (typeof(x) === String){
+  if (typeof (x) === String) {
     console.log("string");
     x = JSON.parse(x);
   }
   x = JSON.parse(x);
-  console.log(`type of x ${typeof(x)}`);
+  console.log(`type of x ${typeof (x)}`);
   console.log(`x, parsedIn logOut ${x}`);
 
   let y = `
