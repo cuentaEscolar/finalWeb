@@ -33,7 +33,9 @@ const make_tr = (x) => (game) => {
     ${make_td(game.title)}
     ${make_td(x.username)}
     ${make_td("fat chance")}
-    ${make_td("not happening")}
+    ${make_td(
+    `<a class="btn btn-warning" id="${game._id}">Juega Ahora!!!</a>`
+  )}
   </tr>
   `
 }
@@ -43,6 +45,20 @@ const fill_table = x =>
 ;
 const user_games = getGamesFromUser(load_userInfo());
 console.log(user_games);
+const playGame = id => {
+
+  alert(`${id}`);
+  let game_to_play = user_games.find( game => game._id === id );
+  sessionStorage.setItem("latestGame",JSON.stringify(game_to_play));
+
+  window.location.href = "/play";
+
+};
 load_games.addEventListener("click", (e) => {
   tableBody.innerHTML = fill_table(user_games);
+  user_games.forEach(game => {
+    docById(`${game._id}`).addEventListener("click", 
+      (e)=> playGame(game._id)
+    );  
+  });
 });
