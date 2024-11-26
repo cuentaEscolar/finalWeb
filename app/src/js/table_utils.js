@@ -1,4 +1,4 @@
-function create_thead_full(cols, titles) {
+function create_thead_full(cols , titles) {
   let str = `<thead>
                   <tr>
                     <th>Valores </th>
