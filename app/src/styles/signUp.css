@@ -1,0 +1,227 @@
+/* You can either copy the below and paste it between style tags on your HTML page, OR you can copy this to a file and name it .css and link it from your HTML page. */
+
+:root {
+  --body-bg: #B2C6F9;
+  /* light blue */
+  --nav-button-bg: #60B272;
+  /* darker green */
+  --content-bg: #A5E8A5;
+  /* lighter green */
+  --accent-dark-one: #ff239a;
+  /* bold pink */
+  --accent-dark-two: #84405c;
+  /* bold blue */
+  --accent-light-one: #A3B0DD;
+  /* light blue */
+  --accent-light-two: #F9B3CF;
+  /* light pink */
+
+}
+
+html,
+body {
+  margin: 0;
+  font-family: verdana;
+  font-size: 10px;
+}
+
+strong {
+  color: var(--accent-dark-one);
+}
+
+em {
+  color: var(--accent-dark-two);
+}
+
+u {
+  color: var(--accent-dark-one);
+}
+
+a {
+  color: var(--accent-dark-two);
+  font-weight: bold;
+}
+
+.nav li {
+  background-color: var(--nav-button-bg);
+  margin-bottom: 2px;
+  text-align: center;
+  display: block;
+  padding: 5px;
+}
+
+.nav li a {
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+.nav {
+  padding-left: 0;
+  margin: 0;
+  margin-top: 5px;
+  list-style-type: none;
+  margin-bottom: 10px;
+
+}
+
+nav.ul {
+  padding: none;
+  margin: none;
+  padding-bottom: 10px;
+}
+
+body {
+  background-color: var(--body-bg);
+}
+
+.container {
+  max-width: 700px;
+}
+
+.alignment {
+  display: flex;
+  justify-content: center;
+}
+
+.content-wrapper {
+  max-width: 605px;
+  margin-left: 55px;
+  margin-right: 0px;
+}
+
+.content {
+  background-color: var(--content-bg);
+  border: 3px solid white;
+  border-top: none;
+  border-bottom: none;
+  box-shadow: -0.3em 0 .5em black;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -3px;
+  max-width: 100%;
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  z-index: 99;
+  position: absolute;
+  bottom: -150px;
+  left: 0;
+  color: var(--accent-dark-one);
+}
+
+.left-content {
+  max-width: 350px;
+  margin-right: 10px;
+}
+
+.padding p {
+  padding-left: 10px;
+}
+
+.right-content {
+  width: 200px;
+  flex: 1;
+
+}
+
+.header {
+  margin: 0 auto;
+  max-width: 713px;
+}
+
+.footer-img {
+  max-width: 700px;
+}
+
+.footer-img img {
+  max-width: 100%;
+}
+
+.header img {
+  max-width: 100%;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  background-color: var(--accent-light-one);
+  color: white;
+}
+
+h2 {
+  background-color: var(--accent-light-two);
+  color: var(--accent-dark-two);
+}
+
+h1,
+h2 {
+  padding: 3px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-size: 12px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  border-bottom: 3px solid white;
+}
+
+h4 {
+  border-bottom: 3px solid var(--nav-button-bg);
+}
+
+.subtitle {
+  font-weight: bold;
+  color: var(--accent-dark-one);
+  font-size: 14px;
+  border-bottom: 2px dashed var(--nav-button-bg);
+}
+
+@media only screen and (max-width: 719px) {
+  .content {
+    box-shadow: -0.2em 0 .3em black;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .content-wrapper {
+    max-width: 100%;
+    margin-left: 7.85%;
+    margin-right: 6%;
+  }
+
+  .right-content {
+    display: block;
+    width: 100%;
+    order: 1;
+  }
+
+  .left-content {
+    order: 2;
+    display: block;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .footer {
+    bottom: -350px;
+    padding-bottom: 50px;
+  }
+}
+
+.removeThis {
+  background-color: yellow;
+}

@@ -8,72 +8,16 @@
   <!-- Bootstrap CSS -->
 
   <script src="../controllers/ajax_handler.js"> </script>
-  <link href="./../src/styles/homeStyle.css" rel="stylesheet">
+  <link href="./../src/styles/signUp.css" rel="stylesheet">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="../controllers/ajax_handler.js"> </script>
   <!-- Custom CSS -->
   <style>
-    /* General Body Styling */
-    body {
-      background-color: #f8f9fa;
-      font-family: Arial, sans-serif;
-    }
-
-    /* Centered Card Styling */
-    .card {
-      margin-top: 5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-title {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #28a745;
-    }
-
-    /* Form Styling */
-    #signup-form .form-label {
-      font-weight: 600;
-      color: #495057;
-    }
-
-    #signup-form .form-control {
-      border-radius: 5px;
-      padding: 0.75rem;
-      font-size: 1rem;
-    }
-
-    #signup-form .btn-success {
-      background-color: #28a745;
-      border-color: #28a745;
-      font-size: 1.25rem;
-      padding: 0.5rem;
-    }
-
-    #signup-form .btn-success:hover {
-      background-color: #218838;
-      border-color: #1e7e34;
-    }
-
-    /* Login Link */
-    .text-center p {
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: #6c757d;
-    }
-
-    .text-center a {
-      color: #28a745;
-      text-decoration: none;
-    }
-
-    .text-center a:hover {
-      text-decoration: underline;
+    * {
+      font-family: Comic Sans MS;
     }
   </style>
-</head>
 
 <body>
   <div class="container">
@@ -81,7 +25,7 @@
       <div class="col-md-6">
         <div class="card mt-5">
           <div class="card-body">
-            <h1 class="card-title text-center">Sign Up</h1>
+            <h1 id="h2Over" class="card-title text-center">Sign Up</h1>
             <form id="signup-form">
               <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
