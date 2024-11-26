@@ -1,4 +1,3 @@
-// models/record.js
 const mongoose = require('mongoose');
 
 const RecordSchema = new mongoose.Schema({
