@@ -25,6 +25,7 @@ const deleteUserBy = {
 const updateUserBy = {
   email: updateXbyY("user", "email")(UserModel)(UserClass.getFields()),
   uuid: updateXbyY("user", "uuid")(UserModel)(UserClass.getFields()),
+  _id: updateXbyY("user", "_id")(UserModel)(UserClass.getFields())
 }
 const dropUsers = dropModel(UserModel);
 const getFullInfo = (req, res) => {

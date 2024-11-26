@@ -11,6 +11,9 @@ router.route("/users").get((req, res) => user_utils.getUsers(req, res));
 router.route("/users/uuid/:uuid")
   .get((req, res) => user_utils.getUserBy["uuid"](req, res))
   ;
+router.route("/users/_id/:_id")
+  .get((req, res) => user_utils.getUserBy["_id"](req, res))
+  ;
 router.route("/users/kill")
   .get((req, res) => user_utils.dropUsers(req, res));
 ;
