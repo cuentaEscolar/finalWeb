@@ -41,6 +41,6 @@ const genericCRUD = CRUD => route => (obj, onSuccess, onError) => {
   xhr.open(CRUD, route, true);
   xhr.setRequestHeader('Content-Type', "application/json");
   xhr.onload = () => getXhrResponse(xhr, onSuccess, onError);
-  if (CRUD !== "GET") xhr.send(JSON.stringify(obj));
+  /*if (CRUD !== "GET")*/ xhr.send(JSON.stringify(obj));
 }
 const genericPost = genericCRUD("POST");

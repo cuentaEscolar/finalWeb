@@ -10,8 +10,9 @@ const Game = require("../models/game");
 // Funciones CRUD para trabajar con GameModel
 const getGames = getX(GameModel);
 const getGameBy = {
-  uuid: getXbyY("uuid")(GameModel),
-  title: getXbyY("title")(GameModel),
+  creatorUuid: CRUD_utils.getXsbyYs(["creatorUuid"])(GameModel),
+  email: getXbyY(["email"])(GameModel),
+  title: getXbyY(["title"])(GameModel),
 }
 const deleteGameBy = {
   uuid: deleteXbyY("uuid")(GameModel),

@@ -7,11 +7,16 @@ const router = express.Router();
 
 
 router.route("/")
-	.get((req, res) =>
-		res.sendFile(path.join(__dirname, "../", "views", "game.html"))
-	)
-	.put((req, res) => game_utils.createGame(req,res)); 
+  .get((req, res) =>
+    game_utils.getGames(req,res)
+  )
+  .put((req, res) => game_utils.createGame(req, res));
+router.route("/uuid/:creatorUuid")
+  .get((req, res) => {
+    game_utils.getGameBy["creatorUuid"](req, res);
+  })
+  ;
 router.route("/:email/:title")
-	.get((req, res) => console.log("uoe"));
+  .get((req, res) => console.log("uoe"));
 
 module.exports = router;
