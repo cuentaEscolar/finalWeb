@@ -63,6 +63,7 @@ function jsonRes(req, res, x) {
   res.send([JSON.stringify(x)]);
 }
 const getX = fThenGonModelbyYs("find")(jsonRes)([]);
+const getXsbyYs= fThenGonModelbyYs("find")(jsonRes);
 const getXbyY = fThenGonModelbyYs("findOne")(jsonRes);
 
 const createX = xClass => Model => (req, res) => {
@@ -118,5 +119,5 @@ function deleteXbyY(xName, yName) {
 }
 const dropModel = Model => (req, res) => Model.deleteMany({}).then(() => console.log("oops"));
 
-module.exports = { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY, dropModel }
+module.exports = { loadXandReturn, getX, getXbyY, createX, deleteXbyY, updateXbyY, dropModel, getXsbyYs }
 
