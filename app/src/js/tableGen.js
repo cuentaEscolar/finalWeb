@@ -143,8 +143,8 @@ btnClearAll.onclick = (generateGameBoard);
 
 btnSaveToAccount.addEventListener("click", () => {
 
-  let user = JSON.parse(sessionStorage.getItem("userInfo"));
-  game.creatorUuid = user.uuid;
+  let user = load_userInfo(); 
+  game.creatorUuid = user._id;
   console.log("pressed :c");
   genericCRUD("PUT")("/games")(
     (game),
