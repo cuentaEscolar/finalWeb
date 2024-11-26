@@ -290,6 +290,9 @@ strong {
 	background-attachment: scrolling;
 	background-repeat: repeat;
 }
+.rainbow_background{
+      background: linear-gradient(46deg, red, orange, yellow, green, blue, indigo, violet, red);
+}
 #overrideBackground 
 {
 	font-family: 'Nunito', sans-serif;
